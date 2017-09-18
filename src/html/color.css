@@ -6,7 +6,7 @@ body {
   border-top: 2px solid #eeeeee;
 }
 .color-circle-btn {
-  padding: 2rem 0;
+  margin: 2rem 0;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -20,16 +20,20 @@ body {
 }
 .color-circle-btn .btn-item > span {
   position: absolute;
-  width: 10rem;
+  width: 6rem;
   bottom: -2rem;
   text-align: center;
+  left:-1rem;
+}
+.color-circle-btn .btn-item > .item-lang {
+  width: 10rem;
   left: -3rem;
 }
 .color-circle-component {
   display: flex;
   justify-content: center;
   width: 100%;
-  padding: 4rem 0;
+  padding-top: 2rem;
   flex-direction: column;
   align-items: center;
 }

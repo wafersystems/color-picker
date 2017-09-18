@@ -28,7 +28,7 @@ export default class extends React.Component {
 				</div>
 				<div className={'color-circle-component'}>
 					<div style={{backgroundColor: color}} className={'color-bg'}/>
-					<ColorRing square={300} radius={200} scale={0.8} onChange={v => this.setState({color: v.htmlColor}, () => sessionStorage.setItem('color', JSON.stringify(v.rgb)))}/>
+					<ColorRing square={260} radius={160} scale={0.5} offset={12} onChange={v => this.setState({color: v.htmlColor}, () => sessionStorage.setItem('color', JSON.stringify(v.rgb)))}/>
 				</div>
 			</div>
 		);

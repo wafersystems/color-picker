@@ -7,7 +7,7 @@ const Saturation = class extends Component {
 	constructor() {
 		super(...arguments);
 		this.state = {
-			color: {r: 255, g: 0, b: 0}, radius: 120, diameter: 400, stroke: 70, x: 180, y: 0, isMove: false,
+			color: {r: 255, g: 0, b: 0}, radius: 100, diameter: 400, stroke: 70, x: 180, y: 0, isMove: false,
 			rotate: 0,
 			adjustAngle: 6,
 			arrow: <polygon points="25 50 0 0 50 0 25 50"/>,
@@ -16,9 +16,10 @@ const Saturation = class extends Component {
 	}
 
 	componentWillMount() {
-		const {color, diameter, stroke, scale, adjustAngle, radius} = this.props;
+		const {color, diameter, stroke, scale, adjustAngle, radius, offset} = this.props;
 		const {state} = this;
 		this.setState({
+			x: (diameter || state.diameter )/2 - offset,
 			color: color || state.color,
 			stroke: stroke || state.stroke,
 			diameter: diameter || state.diameter,

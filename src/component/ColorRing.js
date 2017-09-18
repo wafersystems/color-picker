@@ -101,7 +101,7 @@ class ColorRing extends Component {
 
 ColorRing.propTypes = {
 	radius: PropTypes.number,
-	offSet: PropTypes.number,
+	offset: PropTypes.number,
 	image: PropTypes.object,
 	arrow: PropTypes.object,
 	onChange: PropTypes.func,

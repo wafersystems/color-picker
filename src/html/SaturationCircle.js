@@ -18,7 +18,7 @@ export default class extends React.Component {
 			<div className={'color-circle'}>
 				<div className={'color-circle-btn'}>
 					<div className={'btn-item'}>
-						<span>Color Temperature</span>
+						<span className={'item-lang'}>Color Temperature</span>
 					</div>
 					<div className={'btn-item'}>
 						<span>Brightness</span>
@@ -26,7 +26,7 @@ export default class extends React.Component {
 				</div>
 				<div className={'color-circle-component'}>
 					<span className={'saturation'}>{'4000K'}</span>
-					<Saturation color={color} onChange={v => console.log(v)}/>
+					<Saturation color={color} diameter={340} scale={0.5} offset={12} radius={90} onChange={v => console.log(v)}/>
 				</div>
 			</div>
 		);
