@@ -52,7 +52,7 @@ const Saturation = class extends Component {
 						                 y: diameter/2 - cy
 					                 }, () => {
 						                 if (this.props.onChange) {
-							                 this.props.onChange({saturation: (a % 360)});
+							                 this.props.onChange(a % 360);
 						                 }
 					                 });
 				                 }
@@ -66,7 +66,7 @@ const Saturation = class extends Component {
 						                 y: diameter/2 - cy
 					                 }, () => {
 						                 if (this.props.onChange) {
-							                 this.props.onChange({saturation: (a % 360)});
+							                 this.props.onChange(a % 360);
 						                 }
 					                 });
 				                 }
@@ -87,7 +87,7 @@ const Saturation = class extends Component {
 					</defs>
 					<circle cx={diameter / 2} cy={diameter / 2} r={radius} strokeWidth={stroke} stroke={'url(#left)'} fill="none"
 					        transform={`matrix(0,-1,1,0,0, ${diameter})`}
-					        strokeDasharray={`0 ${radius * 3.15} ${radius * 3.15}`}/>
+					        strokeDasharray={`0 ${radius * 3.14} ${radius * 3.14}`}/>
 					<circle cx={diameter / 2} cy={diameter / 2} r={radius} strokeWidth={stroke} stroke={'url(#right)'} fill="none"
 					        transform={`matrix(0,-1,1,0,0, ${diameter})`}
 					        strokeDasharray={`${radius * 3.15} ${radius * 3.15}`}/>
