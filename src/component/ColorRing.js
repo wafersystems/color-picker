@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {ReactSVGPanZoom} from 'react-svg-pan-zoom';
-import {hslToRgb, colorPicker, rgbToHsl} from './common';
+import {hslToRgb, colorPicker, rgbToHsl, getPointer} from './common';
 import PropTypes from 'prop-types';
 
 class ColorRing extends Component {
@@ -17,7 +17,6 @@ class ColorRing extends Component {
 			arrow: <polygon points="25 50 0 0 50 0 25 50"/>,
 			scale: 1
 		};
-		this.getPointer = this.getPointer.bind(this);
 	}
 
 	componentWillMount() {
@@ -53,9 +52,7 @@ class ColorRing extends Component {
 				                 onTouchEnd={() => this.setState({isMove: false})}
 				                 onTouchMove={e => {
 					                 if (isMove) {
-						                 e.preventDefault();
-						                 e.stopPropagation();
-						                 const {cx, cy, a} = this.getPointer(radius, e.changedPoints[0].x, e.changedPoints[0].y, rotate);
+						                 const {cx, cy, a} = getPointer(radius, e.changedPoints[0].x, e.changedPoints[0].y, rotate);
 						                 this.setState({
 							                 rotate: (a + adjustAngle) % 360,
 							                 x: radius - cx,
@@ -70,8 +67,7 @@ class ColorRing extends Component {
 				                 }}
 				                 onMouseMove={e => {
 					                 if (isMove) {
-						                 e.preventDefault();
-						                 const {cx, cy, a} = this.getPointer(radius, e.x, e.y, rotate);
+						                 const {cx, cy, a} = getPointer(radius, e.x, e.y, rotate);
 						                 this.setState({
 							                 rotate: (a + adjustAngle) % 360,
 							                 x: radius - cx,
@@ -89,9 +85,7 @@ class ColorRing extends Component {
 						<circle cx={radius} cy={radius} r={radius - 10} fillOpacity={0} stroke={'#c9c9c9'} strokeWidth={3} strokeOpacity={1}/>
 						<image xlinkHref={image} width={square} height={square} x={(radius * 2 - square) / 2} y={(radius * 2 - square) / 2}/>
 						<g fill={'#c9c9c9'} transform={`translate(${x}, ${y}) rotate(${rotate} 0 0) scale(${scale})`}
-						   onTouchStart={e => {
-							   e.preventDefault();
-							   e.stopPropagation();
+						   onTouchStart={() => {
 							   this.setState({isMove: true})
 						   }}
 						   onMouseDown={() => this.setState({isMove: true})}>
@@ -103,16 +97,6 @@ class ColorRing extends Component {
 		);
 	}
 
-	getPointer(radius, x, y, rotate) {
-		const R = Math.sqrt((radius - x) * (radius - x) + (radius - y) * (radius - y));
-		const cx = (radius - x) * radius / R;
-		const cy = (radius - y) * radius / R;
-		let a = Math.asin((radius - y) / R) * 180 / Math.PI;
-		if (isNaN(a)) a = rotate;
-		a = 90 - a;
-		a = (x - radius) < 0 ? 360 - a : a;
-		return {cx, cy, a};
-	}
 }
 
 ColorRing.propTypes = {

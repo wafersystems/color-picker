@@ -93,3 +93,14 @@ export const colorPicker = (rgb) => {
 		(rgb.g < 16 ? '0' : '') + rgb.g.toString(16) +
 		(rgb.b < 16 ? '0' : '') + rgb.b.toString(16);
 };
+
+export const getPointer = (radius, x, y, rotate) => {
+	const R = Math.sqrt((radius - x) * (radius - x) + (radius - y) * (radius - y));
+	const cx = (radius - x) * radius / R;
+	const cy = (radius - y) * radius / R;
+	let a = Math.asin((radius - y) / R) * 180 / Math.PI;
+	if (isNaN(a)) a = rotate;
+	a = 90 - a;
+	a = (x - radius) < 0 ? 360 - a : a;
+	return {cx, cy, a};
+};

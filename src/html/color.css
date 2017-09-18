@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+.color-circle {
+  border-top: 2px solid #eeeeee;
+}
+.color-circle-btn {
+  padding: 2rem 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.color-circle-btn .btn-item {
+  width: 4rem;
+  height: 4rem;
+  background: #108800;
+  border-radius: 50%;
+  position: relative;
+}
+.color-circle-btn .btn-item > span {
+  position: absolute;
+  width: 10rem;
+  bottom: -2rem;
+  text-align: center;
+  left: -3rem;
+}
+.color-circle-component {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 4rem 0;
+  flex-direction: column;
+  align-items: center;
+}
+.color-circle-component .color-bg {
+  width: 2rem;
+  height: 2rem;
+  margin-bottom: 2rem;
+}
+.color-circle-component .saturation {
+  width: 5rem;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  text-align: center;
+}
