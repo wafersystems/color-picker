@@ -10,7 +10,7 @@ export default class extends React.Component {
 
 	render() {
 		const {brightness} = this.state;
-		const {onChange} = this.props;
+		const {onChange, onSwitch} = this.props;
 		return (
 				<div className={'color-circle-component'}>
 					<span className={'saturation'}>{brightness}%</span>
@@ -21,7 +21,7 @@ export default class extends React.Component {
 							v -= 180;
 						}
 						this.setState({brightness: Math.round(v/3.6)}, () => onChange && onChange(v / 3.6))}
-					}/>
+					} onSwitch={v => onSwitch && onSwitch(v)}/>
 				</div>
 		);
 	}

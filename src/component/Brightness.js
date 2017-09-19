@@ -10,7 +10,8 @@ class Brightness extends Component {
 			radius: 180, square: 360, x: 160, y: 0, isMove: false, rotate: 0,
 			image: require('./brightness.png'),
 			arrow: Arrow,
-			scale: 1
+			scale: 1,
+			_switch: false
 		};
 	}
 
@@ -34,8 +35,8 @@ class Brightness extends Component {
 	}
 
 	render() {
-		const {radius, isMove, rotate, x, y, image, arrow, scale, square} = this.state;
-		const {adjustAngle = 6} = this.props;
+		const {radius, isMove, rotate, x, y, image, arrow, scale, square, _switch} = this.state;
+		const {adjustAngle = 6, onSwitch} = this.props;
 		return (
 			<ReactSVGPanZoom width={radius * 2} height={radius * 2}
 			                 toolbarPosition="none" tool={'none'} detectPinchGesture={false} detectAutoPan={false}
@@ -76,6 +77,8 @@ class Brightness extends Component {
 					        strokeOpacity={1}/>
 					<image xlinkHref={image} width={square} height={square} x={(radius * 2 - square) / 2}
 					       y={(radius * 2 - square) / 2}/>
+					<image xlinkHref={require(_switch ? './but_on.png': './but_off.png')} width={110} height={110} x={square / 2 - 6}
+					       y={(square) / 2 - 5} onClick={() => this.setState({_switch: !_switch}, () => onSwitch && onSwitch(!_switch))}/>
 					<g fill={'#6C6D83'} transform={`translate(${x}, ${y}) rotate(${rotate} 0 0) scale(${scale})`}
 					   onTouchStart={() => {
 						   this.setState({isMove: true})

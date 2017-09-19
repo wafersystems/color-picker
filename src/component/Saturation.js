@@ -12,7 +12,8 @@ const Saturation = class extends Component {
 			rotate: 0,
 			adjustAngle: 6,
 			arrow: Arrow,
-			scale: 1
+			scale: 1,
+			_switch: false
 		};//radius min 150
 	}
 
@@ -31,7 +32,8 @@ const Saturation = class extends Component {
 	}
 
 	render() {
-		let {color, diameter, stroke, isMove, arrow, rotate, adjustAngle, scale, x, y, radius} = this.state;
+		let {color, diameter, stroke, isMove, arrow, rotate, adjustAngle, scale, x, y, radius, _switch} = this.state;
+		const {onSwitch} = this.props;
 		color = this.props.color || color;
 		let hsl = rgbToHsl({...color});
 		const color0 = colorPicker(hslToRgb({...hsl, s: 1}));
@@ -111,6 +113,8 @@ const Saturation = class extends Component {
 					<circle cx={diameter / 2} cy={diameter / 2} r={radius} strokeWidth={stroke} stroke={'url(#right)'} fill="none"
 					        transform={`matrix(0,-1,1,0,0, ${diameter})`}
 					        strokeDasharray={`${radius * 3.15} ${radius * 3.15}`}/>
+					<image xlinkHref={require(_switch ? './but_on.png': './but_off.png')} width={110} height={110} x={diameter / 2 - 55}
+					       y={(diameter) / 2 - 55} onClick={() => this.setState({_switch: !_switch}, () => onSwitch && onSwitch(!_switch))}/>
 					<g fill={'#6C6D83'} transform={`translate(${x}, ${y}) rotate(${rotate} 0 0) scale(${scale})`}
 					   onTouchStart={() => {
 						   this.setState({isMove: true})

@@ -28,7 +28,6 @@ export default class extends React.Component {
 
 	render() {
 		const {color, btnBg, selected} = this.state;
-		console.log(color)
 		return (
 			<div className={'color-circle'}>
 				<div className={'color-circle-btn'}>
@@ -46,7 +45,7 @@ export default class extends React.Component {
 					</div>
 				</div>
 				<div style={{display: selected === 'colorBg' ? 'block' : 'none'}}>
-					<ColorCircle color={color} onChange={v => this.setState({color: v})}/>
+					<ColorCircle color={color} onChange={v => this.setState({color: v})} onSwitch={v => console.log(v)}/>
 				</div>
 				<div style={{display: selected === 'saturationBg' ? 'block' : 'none'}}>
 					<SaturationCircle color={color} onChange={v => this.setState({color: v})}/>
