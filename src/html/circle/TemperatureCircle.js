@@ -14,7 +14,7 @@ export default class extends React.Component {
 		return (
 				<div className={'color-circle-component'}>
 					<span className={'saturation'}>{saturation}K</span>
-					<Temperature  square={260} radius={180} scale={0.5} onChange={v => {
+					<Temperature  square={260} radius={190} scale={0.5} onChange={v => {
 						if(v >= 0 && v < 180) {
 							v += 180;
 						}else {

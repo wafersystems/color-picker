@@ -7,7 +7,7 @@ class Temperature extends Component {
 		super(...arguments);
 		this.state = {
 			radius: 180, square: 360, x: 160, y: 0, isMove: false, rotate: 0,
-			image: require('./ring_ct.png'),
+			image: require('./color-temperature.png'),
 			arrow: <polygon points="35 70 0 0 70 0 35 70" strokeWidth={20} stroke={'#ffffff'}/>,
 			scale: 1
 		};
