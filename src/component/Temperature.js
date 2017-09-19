@@ -73,7 +73,7 @@ class Temperature extends Component {
 			                 }}
 			>
 				<svg width={radius * 2} height={radius * 2}>
-					<circle cx={radius} cy={radius} r={radius - 4} fillOpacity={0} stroke={'#c9c9c9'} strokeWidth={3}
+					<circle cx={radius} cy={radius} r={radius - 4} fillOpacity={0} stroke={'#c9c9c9'} strokeWidth={1}
 					        strokeOpacity={1}/>
 					<image xlinkHref={image} width={square} height={square} x={(radius * 2 - square) / 2}
 					       y={(radius * 2 - square) / 2}/>
