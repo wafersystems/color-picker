@@ -51,7 +51,7 @@ export default class extends React.Component {
 					<SaturationCircle color={color} onChange={v => this.setState({color: v})}/>
 				</div>
 				<div style={{display: selected === 'brightnessBg' ? 'block' : 'none'}}>
-					<Brightness color={color} onChange={v => {
+					<Brightness onChange={v => {
 						color.hsl.l = v;
 						const rgb = hslToRgb({...color.hsl});
 						const htmlColor = colorPicker(rgb);

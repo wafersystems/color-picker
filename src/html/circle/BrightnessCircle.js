@@ -5,7 +5,7 @@ import Brightness from '../../component/Brightness';
 export default class extends React.Component {
 	constructor() {
 		super(...arguments);
-		this.state = {color: {r: 255, g: 0, b: 0}, brightness: 50}
+		this.state = {brightness: 50}
 	}
 
 	render() {

@@ -7,13 +7,13 @@ import {
 	Route
 } from 'react-router-dom';
 import ColorIndex from './html/ColorIndex';
-import SaturationIndex from './html/SaturationIndex';
+import TemperatureIndex from './html/TemperatureIndex';
 
 const app = <BrowserRouter>
 	<div>
 		<Route exact path="/" component={ColorIndex}/>
 		<Route path="/color" component={ColorIndex}/>
-		<Route path="/saturation" component={SaturationIndex}/>
+		<Route path="/temperature" component={TemperatureIndex}/>
 		<Route path="/test" component={() => <App onChange={v => console.log(v)} radius={250} square={380} scale={0.8} changeBackground/>}/>
 	</div>
 </BrowserRouter>;

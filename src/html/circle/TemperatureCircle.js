@@ -1,6 +1,6 @@
 import React from 'react';
 import '../color.css';
-import Saturation from '../../component/Saturation';
+import Temperature from '../../component/Temperature';
 
 export default class extends React.Component {
 	constructor() {
@@ -10,11 +10,11 @@ export default class extends React.Component {
 
 	render() {
 		const {saturation} = this.state;
-		const {onChange, color} = this.props;
+		const {onChange} = this.props;
 		return (
 				<div className={'color-circle-component'}>
 					<span className={'saturation'}>{saturation}K</span>
-					<Saturation color={color || this.state.color} diameter={340} scale={0.5} offset={18} radius={90} stroke={60} onChange={v => {
+					<Temperature  square={260} radius={180} scale={0.5} onChange={v => {
 						if(v >= 0 && v < 180) {
 							v += 180;
 						}else {
