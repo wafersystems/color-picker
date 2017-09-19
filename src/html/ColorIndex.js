@@ -2,6 +2,8 @@ import React from 'react';
 import './color.css';
 import ColorCircle from './circle/ColorCircle';
 import SaturationCircle from './circle/SaturationCircle';
+import Brightness from './circle/BrightnessCircle';
+import {hslToRgb, colorPicker} from '../component/common';
 
 export default class extends React.Component {
 	constructor() {
@@ -9,6 +11,7 @@ export default class extends React.Component {
 		this.state = {
 			color: {},
 			saturation: 4300,
+			brightness: 50,
 			btnBg: {
 				colorBg: require('./images/btn_color.png'),
 				saturationBg: require('./images/btn_saturation.png'),
@@ -42,10 +45,18 @@ export default class extends React.Component {
 					</div>
 				</div>
 				<div style={{display: selected === 'colorBg' ? 'block' : 'none'}}>
-					<ColorCircle color={color.htmlColor} onChange={v => this.setState({color: v})}/>
+					<ColorCircle color={color} onChange={v => this.setState({color: v})}/>
 				</div>
 				<div style={{display: selected === 'saturationBg' ? 'block' : 'none'}}>
-					<SaturationCircle color={color.rgb} onChange={v => this.setState({saturation: v})}/>
+					<SaturationCircle color={color} onChange={v => this.setState({color: v})}/>
+				</div>
+				<div style={{display: selected === 'brightnessBg' ? 'block' : 'none'}}>
+					<Brightness color={color} onChange={v => {
+						color.hsl.l = v;
+						const rgb = hslToRgb({...color.hsl});
+						const htmlColor = colorPicker(rgb);
+						this.setState({brightness: v, color: {htmlColor, hsl: {...color.hsl, l: v}, rgb}});
+					}}/>
 				</div>
 			</div>
 		);

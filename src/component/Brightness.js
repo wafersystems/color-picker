@@ -1,19 +1,13 @@
 import React, {Component} from 'react';
 import {ReactSVGPanZoom} from 'react-svg-pan-zoom';
-import {hslToRgb, colorPicker, getPointer} from './common';
-import PropTypes from 'prop-types';
+import {getPointer} from './common';
 
-class ColorRing extends Component {
+class Brightness extends Component {
 	constructor() {
 		super(...arguments);
 		this.state = {
 			radius: 180, square: 360, x: 160, y: 0, isMove: false, rotate: 0,
-			color: {
-				h: 0,
-				s: 1,
-				l: 0.5
-			},
-			image: require('./ring.png'),
+			image: require('./brightness.png'),
 			arrow: <polygon points="35 70 0 0 70 0 35 70" strokeWidth={20} stroke={'#ffffff'}/>,
 			scale: 1
 		};
@@ -38,17 +32,9 @@ class ColorRing extends Component {
 		});
 	}
 
-	componentWillReceiveProps(np) {
-		if (!this.state.isMove && np.color && np.color.hsl) {
-			this.setState({color: np.color.hsl});
-		}
-	}
-
 	render() {
-		const {radius, isMove, rotate, x, y, image, arrow, scale, color, square} = this.state;
-		const { adjustAngle = 6} = this.props;
-		const rgb = hslToRgb(color);
-		console.log(this.props.color);
+		const {radius, isMove, rotate, x, y, image, arrow, scale, square} = this.state;
+		const {adjustAngle = 6} = this.props;
 		return (
 			<ReactSVGPanZoom width={radius * 2} height={radius * 2}
 			                 toolbarPosition="none" tool={'none'} detectPinchGesture={false} detectAutoPan={false}
@@ -61,11 +47,10 @@ class ColorRing extends Component {
 					                 this.setState({
 						                 rotate: (a + adjustAngle) % 360,
 						                 x: radius - cx,
-						                 y: radius - cy,
-						                 color: {...color, h: (a % 360)}
+						                 y: radius - cy
 					                 }, () => {
 						                 if (this.props.onChange) {
-							                 this.props.onChange({htmlColor: colorPicker(rgb), rgb, hsl: color});
+							                 this.props.onChange(a % 360);
 						                 }
 					                 });
 				                 }
@@ -76,11 +61,10 @@ class ColorRing extends Component {
 					                 this.setState({
 						                 rotate: (a + adjustAngle) % 360,
 						                 x: radius - cx,
-						                 y: radius - cy,
-						                 color: {...color, h: (a % 360)}
+						                 y: radius - cy
 					                 }, () => {
 						                 if (this.props.onChange) {
-							                 this.props.onChange({htmlColor: colorPicker(rgb), rgb, hsl: color});
+							                 this.props.onChange(a % 360);
 						                 }
 					                 });
 				                 }
@@ -105,14 +89,4 @@ class ColorRing extends Component {
 
 }
 
-ColorRing.propTypes = {
-	radius: PropTypes.number,
-	offset: PropTypes.number,
-	image: PropTypes.object,
-	arrow: PropTypes.object,
-	onChange: PropTypes.func,
-	adjustAngle: PropTypes.number,
-	scale: PropTypes.number
-};
-
-export default ColorRing;
+export default Brightness;

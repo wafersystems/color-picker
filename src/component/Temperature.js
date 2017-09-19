@@ -19,7 +19,7 @@ const Saturation = class extends Component {
 		const {color, diameter, stroke, scale, adjustAngle, radius, offset} = this.props;
 		const {state} = this;
 		this.setState({
-			x: (diameter || state.diameter ) / 2 - offset,
+			x: (diameter || state.diameter )/2 - offset,
 			color: color || state.color,
 			stroke: stroke || state.stroke,
 			diameter: diameter || state.diameter,
@@ -44,55 +44,35 @@ const Saturation = class extends Component {
 			                 onTouchEnd={() => this.setState({isMove: false})}
 			                 onTouchMove={e => {
 				                 if (isMove) {
-					                 let {cx, cy, a} = getPointer(diameter / 2, e.changedPoints[0].x, e.changedPoints[0].y, rotate);
+					                 const {cx, cy, a} = getPointer(diameter/2, e.changedPoints[0].x, e.changedPoints[0].y, rotate);
 					                 this.setState({
 						                 rotate: (a + adjustAngle) % 360,
-						                 x: diameter / 2 - cx,
-						                 y: diameter / 2 - cy
+						                 x: diameter/2 - cx,
+						                 y: diameter/2 - cy
 					                 }, () => {
 						                 if (this.props.onChange) {
-							                 if(a >= 0 && a < 180) {
-								                 a = 180 - a;
-							                 }else {
-								                 a = 540 - a;
-							                 }
-							                 const rgb = hslToRgb({...hsl, s: a / 3.6});
-							                 this.props.onChange({
-								                 htmlColor: colorPicker(rgb),
-								                 rgb,
-								                 hsl: {...hsl, s: a / 3.6}
-							                 });
+							                 this.props.onChange(a % 360);
 						                 }
 					                 });
 				                 }
 			                 }}
 			                 onMouseMove={e => {
 				                 if (isMove) {
-					                 let {cx, cy, a} = getPointer(diameter / 2, e.x, e.y, rotate);
+					                 const {cx, cy, a} = getPointer(diameter/2, e.x, e.y, rotate);
 					                 this.setState({
 						                 rotate: (a + adjustAngle) % 360,
-						                 x: diameter / 2 - cx,
-						                 y: diameter / 2 - cy
+						                 x: diameter/2 - cx,
+						                 y: diameter/2 - cy
 					                 }, () => {
 						                 if (this.props.onChange) {
-							                 if(a >= 0 && a < 180) {
-								                 a = 180 - a;
-							                 }else {
-								                 a = 540 - a;
-							                 }
-							                 const rgb = hslToRgb({...hsl, s: a / 3.6});
-							                 this.props.onChange({
-								                 htmlColor: colorPicker(rgb),
-								                 rgb,
-								                 hsl: {...hsl, s: a / 3.6}
-							                 });
+							                 this.props.onChange(a % 360);
 						                 }
 					                 });
 				                 }
 			                 }}
 			>
 				<svg width={diameter + 50} height={diameter + 50}>
-					<circle cx={diameter / 2} cy={diameter / 2} r={diameter / 2 - 4} fillOpacity={0} stroke={'#c9c9c9'}
+					<circle cx={diameter / 2} cy={diameter / 2} r={diameter/2 - 4} fillOpacity={0} stroke={'#c9c9c9'}
 					        strokeWidth={3} strokeOpacity={1}/>
 					<defs>
 						<linearGradient id="left">
