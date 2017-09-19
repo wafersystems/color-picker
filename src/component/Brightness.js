@@ -16,7 +16,7 @@ class Brightness extends Component {
 	}
 
 	componentWillMount() {
-		const {radius, offset = 20, image, arrow, scale, square} = this.props;
+		const {radius, offset = 12, image, arrow, scale, square} = this.props;
 		const {state} = this;
 		this.setState({
 			radius: radius || state.radius,
