@@ -10,7 +10,7 @@ class ColorRing extends Component {
 			radius: 180, square: 360, x: 160, y: 0, isMove: false, rotate: 0,
 			color: {
 				h: 0,
-				s: 1,
+				s: 0.5,
 				l: 0.5
 			},
 			image: require('./ring.png'),
@@ -48,7 +48,6 @@ class ColorRing extends Component {
 		const {radius, isMove, rotate, x, y, image, arrow, scale, color, square} = this.state;
 		const { adjustAngle = 6} = this.props;
 		const rgb = hslToRgb(color);
-		console.log(this.props.color);
 		return (
 			<ReactSVGPanZoom width={radius * 2} height={radius * 2}
 			                 toolbarPosition="none" tool={'none'} detectPinchGesture={false} detectAutoPan={false}

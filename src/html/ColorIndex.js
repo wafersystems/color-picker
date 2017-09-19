@@ -9,7 +9,7 @@ export default class extends React.Component {
 	constructor() {
 		super(...arguments);
 		this.state = {
-			color: {},
+			color: {htmlColor: '#ff0000', rgb: {r: 255, g: 0, b: 0}, hsl: {h: 0, s: 0.5, l: 0.5}},
 			saturation: 4300,
 			brightness: 50,
 			btnBg: {
