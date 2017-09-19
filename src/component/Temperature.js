@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {ReactSVGPanZoom} from 'react-svg-pan-zoom';
 import {getPointer} from './common';
+import Arrow from './Arrow';
 
 class Temperature extends Component {
 	constructor() {
@@ -8,7 +9,7 @@ class Temperature extends Component {
 		this.state = {
 			radius: 180, square: 360, x: 160, y: 0, isMove: false, rotate: 0,
 			image: require('./color-temperature.png'),
-			arrow: <polygon points="35 70 0 0 70 0 35 70" strokeWidth={20} stroke={'#ffffff'}/>,
+			arrow: Arrow,
 			scale: 1
 		};
 	}

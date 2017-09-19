@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {hslToRgb, colorPicker, rgbToHsl, getPointer} from './common';
 import PropTypes from 'prop-types';
 import {ReactSVGPanZoom} from 'react-svg-pan-zoom';
+import Arrow from './Arrow';
 
 const Saturation = class extends Component {
 	constructor() {
@@ -10,7 +11,7 @@ const Saturation = class extends Component {
 			color: {r: 255, g: 0, b: 0}, radius: 100, diameter: 400, stroke: 70, x: 180, y: 0, isMove: false,
 			rotate: 0,
 			adjustAngle: 6,
-			arrow: <polygon points="35 70 0 0 70 0 35 70" strokeWidth={20} stroke={'#ffffff'}/>,
+			arrow: Arrow,
 			scale: 1
 		};//radius min 150
 	}
@@ -93,7 +94,7 @@ const Saturation = class extends Component {
 			>
 				<svg width={diameter + 50} height={diameter + 50}>
 					<circle cx={diameter / 2} cy={diameter / 2} r={diameter / 2 - 4} fillOpacity={0} stroke={'#c9c9c9'}
-					        strokeWidth={3} strokeOpacity={1}/>
+					        strokeWidth={1} strokeOpacity={1}/>
 					<defs>
 						<linearGradient id="left">
 							<stop offset="8%" stopColor={color0}/>

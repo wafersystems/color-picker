@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {ReactSVGPanZoom} from 'react-svg-pan-zoom';
 import {hslToRgb, colorPicker, getPointer} from './common';
 import PropTypes from 'prop-types';
+import Arrow from './Arrow';
 
 class ColorRing extends Component {
 	constructor() {
@@ -14,7 +15,7 @@ class ColorRing extends Component {
 				l: 0.5
 			},
 			image: require('./ring.png'),
-			arrow: <polygon points="35 70 0 0 70 0 35 70" strokeWidth={20} stroke={'#ffffff'}/>,
+			arrow: Arrow,
 			scale: 1
 		};
 	}
@@ -53,6 +54,7 @@ class ColorRing extends Component {
 			                 toolbarPosition="none" tool={'none'} detectPinchGesture={false} detectAutoPan={false}
 			                 miniaturePosition="none"
 			                 detectWheel={false}
+			                 fillOpacity={0}
 			                 onTouchEnd={() => this.setState({isMove: false})}
 			                 onTouchMove={e => {
 				                 if (isMove) {
@@ -86,7 +88,7 @@ class ColorRing extends Component {
 			                 }}
 			>
 				<svg width={radius * 2} height={radius * 2}>
-					<circle cx={radius} cy={radius} r={radius - 4} fillOpacity={0} stroke={'#c9c9c9'} strokeWidth={3}
+					<circle cx={radius} cy={radius} r={radius - 4} fillOpacity={0} stroke={'#c9c9c9'} strokeWidth={1}
 					        strokeOpacity={1}/>
 					<image xlinkHref={image} width={square} height={square} x={(radius * 2 - square) / 2}
 					       y={(radius * 2 - square) / 2}/>

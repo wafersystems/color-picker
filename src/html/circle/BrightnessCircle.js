@@ -14,7 +14,7 @@ export default class extends React.Component {
 		return (
 				<div className={'color-circle-component'}>
 					<span className={'saturation'}>{brightness}%</span>
-					<Brightness square={260} radius={180} scale={0.5} onChange={v => {
+					<Brightness square={220} radius={160} scale={0.5} onChange={v => {
 						if(v >= 0 && v < 180) {
 							v += 180;
 						}else {

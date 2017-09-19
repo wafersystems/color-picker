@@ -13,10 +13,10 @@ export default class extends React.Component {
 			saturation: 4300,
 			brightness: 50,
 			btnBg: {
-				colorBg: require('./images/btn_color.png'),
-				saturationBg: require('./images/btn_saturation.png'),
-				brightnessBg: require('./images/btn_brightness.png'),
-				normalBg: require('./images/btn_normal.png')
+				colorBg: require('./images/but_color_small.png'),
+				saturationBg: require('./images/but_saturability.png'),
+				brightnessBg: require('./images/but_brightness.png'),
+				normalBg: require('./images/but_normal.png')
 			},
 			selected: 'colorBg'
 		}
@@ -28,6 +28,7 @@ export default class extends React.Component {
 
 	render() {
 		const {color, btnBg, selected} = this.state;
+		console.log(color)
 		return (
 			<div className={'color-circle'}>
 				<div className={'color-circle-btn'}>

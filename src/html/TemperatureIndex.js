@@ -7,9 +7,9 @@ export default class extends React.Component {
 	constructor() {
 		super(...arguments);
 		this.state = {brightness: 50, temperature: 4300, btnBg: {
-			temperatureBg: require('./images/btn_ct.png'),
-			brightnessBg: require('./images/btn_brightness.png'),
-			normalBg: require('./images/btn_normal.png')
+			temperatureBg: require('./images/but_color-temperature_small.png'),
+			brightnessBg: require('./images/but_brightness.png'),
+			normalBg: require('./images/but_normal.png')
 		},selected: 'temperatureBg'}
 	}
 	componentWillMount() {

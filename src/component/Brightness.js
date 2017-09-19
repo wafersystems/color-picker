@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {ReactSVGPanZoom} from 'react-svg-pan-zoom';
 import {getPointer} from './common';
+import Arrow from './Arrow';
 
 class Brightness extends Component {
 	constructor() {
@@ -8,7 +9,7 @@ class Brightness extends Component {
 		this.state = {
 			radius: 180, square: 360, x: 160, y: 0, isMove: false, rotate: 0,
 			image: require('./brightness.png'),
-			arrow: <polygon points="35 70 0 0 70 0 35 70" strokeWidth={20} stroke={'#ffffff'}/>,
+			arrow: Arrow,
 			scale: 1
 		};
 	}
@@ -71,7 +72,7 @@ class Brightness extends Component {
 			                 }}
 			>
 				<svg width={radius * 2} height={radius * 2}>
-					<circle cx={radius} cy={radius} r={radius - 4} fillOpacity={0} stroke={'#c9c9c9'} strokeWidth={3}
+					<circle cx={radius} cy={radius} r={radius - 4} fillOpacity={0} stroke={'#c9c9c9'} strokeWidth={1}
 					        strokeOpacity={1}/>
 					<image xlinkHref={image} width={square} height={square} x={(radius * 2 - square) / 2}
 					       y={(radius * 2 - square) / 2}/>

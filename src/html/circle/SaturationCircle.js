@@ -13,7 +13,7 @@ export default class extends React.Component {
 		return (
 				<div className={'color-circle-component'}>
 					<div style={{backgroundColor: color.htmlColor || this.state.htmlColor}} className={'color-bg'}/>
-					<Saturation color={color.rgb || this.state.color} diameter={340} scale={0.5} offset={18} radius={90} stroke={60} onChange={v => {
+					<Saturation color={color.rgb || this.state.color} diameter={320} scale={0.5} offset={18} radius={85} stroke={50} onChange={v => {
 						this.setState({htmlColor: v.htmlColor}, () => onChange && onChange(v))}
 					}/>
 				</div>
