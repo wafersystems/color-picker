@@ -10,7 +10,7 @@ const Saturation = class extends Component {
 			color: {r: 255, g: 0, b: 0}, radius: 100, diameter: 400, stroke: 70, x: 180, y: 0, isMove: false,
 			rotate: 0,
 			adjustAngle: 6,
-			arrow: <polygon points="25 50 0 0 50 0 25 50"/>,
+			arrow: <polygon points="35 70 0 0 70 0 35 70" strokeWidth={20} stroke={'#ffffff'}/>,
 			scale: 1
 		};//radius min 150
 	}
@@ -29,10 +29,9 @@ const Saturation = class extends Component {
 		});
 	}
 
-
 	render() {
-		const {color, diameter, stroke, isMove, arrow, rotate, adjustAngle, scale, x, y, radius} = this.state;
-
+		let {color, diameter, stroke, isMove, arrow, rotate, adjustAngle, scale, x, y, radius} = this.state;
+		color = this.props.color || color;
 		let hsl = rgbToHsl({...color});
 		const color0 = colorPicker(hslToRgb({...hsl, s: 1}));
 		const color1 = colorPicker(hslToRgb({...hsl, s: 0.5}));
@@ -73,7 +72,7 @@ const Saturation = class extends Component {
 			                 }}
 			>
 				<svg width={diameter + 50} height={diameter + 50}>
-					<circle cx={diameter / 2} cy={diameter / 2} r={diameter/2 - 10} fillOpacity={0} stroke={'#c9c9c9'}
+					<circle cx={diameter / 2} cy={diameter / 2} r={diameter/2 - 4} fillOpacity={0} stroke={'#c9c9c9'}
 					        strokeWidth={3} strokeOpacity={1}/>
 					<defs>
 						<linearGradient id="left">
@@ -91,7 +90,7 @@ const Saturation = class extends Component {
 					<circle cx={diameter / 2} cy={diameter / 2} r={radius} strokeWidth={stroke} stroke={'url(#right)'} fill="none"
 					        transform={`matrix(0,-1,1,0,0, ${diameter})`}
 					        strokeDasharray={`${radius * 3.15} ${radius * 3.15}`}/>
-					<g fill={'#c9c9c9'} transform={`translate(${x}, ${y}) rotate(${rotate} 0 0) scale(${scale})`}
+					<g fill={'#6C6D83'} transform={`translate(${x}, ${y}) rotate(${rotate} 0 0) scale(${scale})`}
 					   onTouchStart={() => {
 						   this.setState({isMove: true})
 					   }}

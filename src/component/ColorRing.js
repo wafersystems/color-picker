@@ -14,7 +14,7 @@ class ColorRing extends Component {
 				l: 0.5
 			},
 			image: require('./ring.png'),
-			arrow: <polygon points="25 50 0 0 50 0 25 50"/>,
+			arrow: <polygon points="35 70 0 0 70 0 35 70" strokeWidth={20} stroke={'#ffffff'}/>,
 			scale: 1
 		};
 	}
@@ -82,9 +82,9 @@ class ColorRing extends Component {
 				                 }}
 				>
 					<svg width={radius * 2} height={radius * 2}>
-						<circle cx={radius} cy={radius} r={radius - 10} fillOpacity={0} stroke={'#c9c9c9'} strokeWidth={3} strokeOpacity={1}/>
+						<circle cx={radius} cy={radius} r={radius - 4} fillOpacity={0} stroke={'#c9c9c9'} strokeWidth={3} strokeOpacity={1}/>
 						<image xlinkHref={image} width={square} height={square} x={(radius * 2 - square) / 2} y={(radius * 2 - square) / 2}/>
-						<g fill={'#c9c9c9'} transform={`translate(${x}, ${y}) rotate(${rotate} 0 0) scale(${scale})`}
+						<g fill={'#6C6D83'} transform={`translate(${x}, ${y}) rotate(${rotate} 0 0) scale(${scale})`}
 						   onTouchStart={() => {
 							   this.setState({isMove: true})
 						   }}

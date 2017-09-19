@@ -6,14 +6,14 @@ import {
 	BrowserRouter,
 	Route
 } from 'react-router-dom';
-import ColorCircle from './html/ColorCircle';
-import SaturationCircle from './html/SaturationCircle';
+import ColorIndex from './html/ColorIndex';
+import SaturationIndex from './html/SaturationIndex';
 
 const app = <BrowserRouter>
 	<div>
-		<Route exact path="/" component={ColorCircle}/>
-		<Route path="/color" component={ColorCircle}/>
-		<Route path="/saturation" component={SaturationCircle}/>
+		<Route exact path="/" component={ColorIndex}/>
+		<Route path="/color" component={ColorIndex}/>
+		<Route path="/saturation" component={SaturationIndex}/>
 		<Route path="/test" component={() => <App onChange={v => console.log(v)} radius={250} square={380} scale={0.8} changeBackground/>}/>
 	</div>
 </BrowserRouter>;
