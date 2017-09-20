@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './component/ColorRing';
 import registerServiceWorker from './registerServiceWorker';
 import {
 	BrowserRouter,
@@ -12,9 +11,8 @@ import TemperatureIndex from './html/TemperatureIndex';
 const app = <BrowserRouter>
 	<div>
 		<Route exact path="/" component={ColorIndex}/>
-		<Route path="/color" component={ColorIndex}/>
-		<Route path="/temperature" component={TemperatureIndex}/>
-		<Route path="/test" component={() => <App onChange={v => console.log(v)} radius={250} square={380} scale={0.8} changeBackground/>}/>
+		<Route path="/color/:area" component={ColorIndex}/>
+		<Route path="/temperature/:area" component={TemperatureIndex}/>
 	</div>
 </BrowserRouter>;
 

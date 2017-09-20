@@ -4,6 +4,7 @@ import ColorCircle from './circle/ColorCircle';
 import SaturationCircle from './circle/SaturationCircle';
 import Brightness from './circle/BrightnessCircle';
 import {hslToRgb, colorPicker} from '../component/common';
+import {sceneChange, colorChange} from './request';
 
 export default class extends React.Component {
 	constructor() {
@@ -18,16 +19,18 @@ export default class extends React.Component {
 				brightnessBg: require('./images/but_brightness.png'),
 				normalBg: require('./images/but_normal.png')
 			},
-			selected: 'colorBg'
+			selected: 'colorBg',
+			area: 1
 		}
 	}
 
 	componentWillMount() {
 		document.title = 'Meeting Room';
+		this.setState({area: this.props.match.params.area});
 	}
 
 	render() {
-		const {color, btnBg, selected} = this.state;
+		const {color, btnBg, selected, area} = this.state;
 		return (
 			<div className={'color-circle'}>
 				<div className={'color-circle-btn'}>
@@ -45,10 +48,10 @@ export default class extends React.Component {
 					</div>
 				</div>
 				<div style={{display: selected === 'colorBg' ? 'block' : 'none'}}>
-					<ColorCircle color={color} onChange={v => this.setState({color: v})} onSwitch={v => console.log(v)}/>
+					<ColorCircle onFetch={() => colorChange(area, {r: 1, g: 2, b: 3}, color.rgb)} color={color} onChange={v => this.setState({color: v})} onSwitch={v => sceneChange(area, v ? 1 : 4)}/>
 				</div>
 				<div style={{display: selected === 'saturationBg' ? 'block' : 'none'}}>
-					<SaturationCircle color={color} onChange={v => this.setState({color: v})}/>
+					<SaturationCircle onFetch={() => colorChange(area, {r: 1, g: 2, b: 3}, color.rgb)}  color={color} onChange={v => this.setState({color: v})} onSwitch={v => sceneChange(area, v ? 1 : 4)}/>
 				</div>
 				<div style={{display: selected === 'brightnessBg' ? 'block' : 'none'}}>
 					<Brightness onChange={v => {
@@ -56,7 +59,7 @@ export default class extends React.Component {
 						const rgb = hslToRgb({...color.hsl});
 						const htmlColor = colorPicker(rgb);
 						this.setState({brightness: v, color: {htmlColor, hsl: {...color.hsl, l: v}, rgb}});
-					}}/>
+					}} onFetch={() => colorChange(area, {r: 1, g: 2, b: 3}, color.rgb)}  onSwitch={v => sceneChange(area, v ? 1 : 4)}/>
 				</div>
 			</div>
 		);

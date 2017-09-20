@@ -48,7 +48,7 @@ class ColorRing extends Component {
 
 	render() {
 		const {radius, isMove, rotate, x, y, image, arrow, scale, color, square, _switch} = this.state;
-		const {adjustAngle = 6, onSwitch} = this.props;
+		const {adjustAngle = 6, onSwitch, onFetch} = this.props;
 		const rgb = hslToRgb(color);
 		return (
 			<ReactSVGPanZoom width={radius * 2} height={radius * 2}
@@ -56,7 +56,7 @@ class ColorRing extends Component {
 			                 miniaturePosition="none"
 			                 detectWheel={false}
 			                 fillOpacity={0}
-			                 onTouchEnd={() => this.setState({isMove: false})}
+			                 onTouchEnd={() => {this.setState({isMove: false}); onFetch && onFetch()}}
 			                 onTouchMove={e => {
 				                 if (isMove) {
 					                 const {cx, cy, a} = getPointer(radius, e.changedPoints[0].x, e.changedPoints[0].y, rotate);
@@ -96,7 +96,7 @@ class ColorRing extends Component {
 					<g width={110} height={110} x={square / 2 - 5}
 					   y={(square) / 2 - 5}>
 						<image xlinkHref={require(_switch ? './but_on.png': './but_off.png')} width={110} height={110} x={square / 2 - 6}
-						       y={(square) / 2 - 5} onClick={() => this.setState({_switch: !_switch}, () => onSwitch && onSwitch(!_switch))}/>
+						       y={(square) / 2 - 5} onTouchEnd={e => {e.stopPropagation(); e.preventDefault(); this.setState({_switch: !_switch}, () => onSwitch && onSwitch(!_switch))}}/>
 						<text>
 							No
 						</text>

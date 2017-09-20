@@ -36,13 +36,13 @@ class Temperature extends Component {
 
 	render() {
 		const {radius, isMove, rotate, x, y, image, arrow, scale, square, _switch} = this.state;
-		const {adjustAngle = 6, onSwitch} = this.props;
+		const {adjustAngle = 6, onSwitch, onFetch} = this.props;
 		return (
 			<ReactSVGPanZoom width={radius * 2} height={radius * 2}
 			                 toolbarPosition="none" tool={'none'} detectPinchGesture={false} detectAutoPan={false}
 			                 miniaturePosition="none"
 			                 detectWheel={false}
-			                 onTouchEnd={() => this.setState({isMove: false})}
+			                 onTouchEnd={() => {this.setState({isMove: false}); onFetch && onFetch()}}
 			                 onTouchMove={e => {
 				                 if (isMove) {
 					                 const {cx, cy, a} = getPointer(radius, e.changedPoints[0].x, e.changedPoints[0].y, rotate);
@@ -78,7 +78,7 @@ class Temperature extends Component {
 					<image xlinkHref={image} width={square} height={square} x={(radius * 2 - square) / 2}
 					       y={(radius * 2 - square) / 2}/>
 					<image xlinkHref={require(_switch ? './but_on.png': './but_off.png')} width={110} height={110} x={square / 2 - 6}
-					       y={(square) / 2 - 5} onClick={() => this.setState({_switch: !_switch}, () => onSwitch && onSwitch(!_switch))}/>
+					       y={(square) / 2 - 5} onTouchEnd={e => {e.stopPropagation(); e.preventDefault();this.setState({_switch: !_switch}, () => onSwitch && onSwitch(!_switch))}}/>
 					<g fill={'#6C6D83'} transform={`translate(${x}, ${y}) rotate(${rotate} 0 0) scale(${scale})`}
 					   onTouchStart={() => {
 						   this.setState({isMove: true})

@@ -2,22 +2,24 @@ import React from 'react';
 import './color.css';
 import Temperature from './circle/TemperatureCircle';
 import Brightness from './circle/BrightnessCircle';
+import {sceneChange, temperatureChange} from './request';
 
 export default class extends React.Component {
 	constructor() {
 		super(...arguments);
-		this.state = {brightness: 50, temperature: 4300, btnBg: {
+		this.state = {brightness: 50, temperature: 180, btnBg: {
 			temperatureBg: require('./images/but_color-temperature_small.png'),
 			brightnessBg: require('./images/but_brightness.png'),
 			normalBg: require('./images/but_normal.png')
-		},selected: 'temperatureBg'}
+		},selected: 'temperatureBg', area: 1}
 	}
 	componentWillMount() {
 		document.title = 'Meeting Room';
+		this.setState({area: this.props.match.params.area});
 	}
 
 	render() {
-		const {btnBg, selected} = this.state;
+		const {btnBg, selected, area, brightness, temperature} = this.state;
 		return (
 			<div className={'color-circle'}>
 				<div className={'color-circle-btn'}>
@@ -32,12 +34,10 @@ export default class extends React.Component {
 				</div>
 
 				<div style={{display: selected === 'temperatureBg' ? 'block' : 'none'}}>
-					<Temperature onChange={v => {
-						this.setState({temperature: Math.round(v/360 * 3800) + 2700})}
-					}/>
+					<Temperature onFetch={() => temperatureChange(area, {c: 1, w: 2}, temperature, brightness)} onChange={v => this.setState({temperature: v})} onSwitch={v => sceneChange(area, v ? 1 : 4)}/>
 				</div>
 				<div style={{display: selected === 'brightnessBg' ? 'block' : 'none'}}>
-					<Brightness onChange={v => this.setState({brightness: v})}/>
+					<Brightness onFetch={() => temperatureChange(area, {c: 1, w: 2}, temperature, brightness)} onChange={v => this.setState({brightness: v})} onSwitch={v => sceneChange(area, v ? 1 : 4)}/>
 				</div>
 			</div>
 		);

@@ -33,7 +33,7 @@ const Saturation = class extends Component {
 
 	render() {
 		let {color, diameter, stroke, isMove, arrow, rotate, adjustAngle, scale, x, y, radius, _switch} = this.state;
-		const {onSwitch} = this.props;
+		const {onSwitch, onFetch} = this.props;
 		color = this.props.color || color;
 		let hsl = rgbToHsl({...color});
 		const color0 = colorPicker(hslToRgb({...hsl, s: 1}));
@@ -44,7 +44,7 @@ const Saturation = class extends Component {
 			                 toolbarPosition="none" tool={'none'} detectPinchGesture={false} detectAutoPan={false}
 			                 miniaturePosition="none"
 			                 detectWheel={false}
-			                 onTouchEnd={() => this.setState({isMove: false})}
+			                 onTouchEnd={() => {this.setState({isMove: false}); onFetch && onFetch()}}
 			                 onTouchMove={e => {
 				                 if (isMove) {
 					                 let {cx, cy, a} = getPointer(diameter / 2, e.changedPoints[0].x, e.changedPoints[0].y, rotate);
@@ -114,7 +114,7 @@ const Saturation = class extends Component {
 					        transform={`matrix(0,-1,1,0,0, ${diameter})`}
 					        strokeDasharray={`${radius * 3.15} ${radius * 3.15}`}/>
 					<image xlinkHref={require(_switch ? './but_on.png': './but_off.png')} width={120} height={120} x={diameter / 2 - 60}
-					       y={(diameter) / 2 - 60} onClick={() => this.setState({_switch: !_switch}, () => onSwitch && onSwitch(!_switch))}/>
+					       y={(diameter) / 2 - 60} onTouchEnd={e => {e.stopPropagation(); e.preventDefault(); this.setState({_switch: !_switch}, () => onSwitch && onSwitch(!_switch))}}/>
 					<g fill={'#6C6D83'} transform={`translate(${x}, ${y}) rotate(${rotate} 0 0) scale(${scale})`}
 					   onTouchStart={() => {
 						   this.setState({isMove: true})
