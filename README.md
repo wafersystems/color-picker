@@ -1,5 +1,6 @@
 # color-picker
- This project is a demo for smart lighting.
+ This project is a demo for smart lighting.<br>
+ Run only on browsers of mobile devices (mobile phones).
  
 ## Dev
  http://localhost:8000/color/{area}?r={r}&g={g}&b={b}
