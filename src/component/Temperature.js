@@ -35,8 +35,8 @@ class Temperature extends Component {
 	}
 
 	render() {
-		const {radius, isMove, rotate, x, y, image, arrow, scale, square, _switch} = this.state;
-		const {adjustAngle = 6, onSwitch, onFetch} = this.props;
+		const {radius, isMove, rotate, x, y, image, arrow, scale, square} = this.state;
+		const {adjustAngle = 6, onSwitch, onFetch, _switch} = this.props;
 		return (
 			<ReactSVGPanZoom width={radius * 2} height={radius * 2}
 			                 toolbarPosition="none" tool={'none'} detectPinchGesture={false} detectAutoPan={false}

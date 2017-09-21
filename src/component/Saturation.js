@@ -32,8 +32,8 @@ const Saturation = class extends Component {
 	}
 
 	render() {
-		let {color, diameter, stroke, isMove, arrow, rotate, adjustAngle, scale, x, y, radius, _switch} = this.state;
-		const {onSwitch, onFetch} = this.props;
+		let {color, diameter, stroke, isMove, arrow, rotate, adjustAngle, scale, x, y, radius} = this.state;
+		const {onSwitch, onFetch, _switch} = this.props;
 		color = this.props.color || color;
 		let hsl = rgbToHsl({...color});
 		const color0 = colorPicker(hslToRgb({...hsl, s: 1}));

@@ -22,7 +22,7 @@ class ColorRing extends Component {
 	}
 
 	componentWillMount() {
-		const {radius, offset = 20, image, arrow, scale, square} = this.props;
+		const {radius, offset = 20, image, arrow, scale, square, _switch} = this.props;
 		const {state} = this;
 		this.setState({
 			radius: radius || state.radius,
@@ -30,6 +30,7 @@ class ColorRing extends Component {
 			image: image || state.image,
 			arrow: arrow || state.arrow,
 			scale: scale || state.scale,
+      _switch: _switch || state._switch,
 			square: (square > radius * 2 ? radius : square) || state.square
 		});
 	}
@@ -47,8 +48,8 @@ class ColorRing extends Component {
 	}
 
 	render() {
-		const {radius, isMove, rotate, x, y, image, arrow, scale, color, square, _switch} = this.state;
-		const {adjustAngle = 6, onSwitch, onFetch} = this.props;
+		const {radius, isMove, rotate, x, y, image, arrow, scale, color, square} = this.state;
+		const {adjustAngle = 6, onSwitch, onFetch, _switch} = this.props;
 		const rgb = hslToRgb(color);
 		return (
 			<ReactSVGPanZoom width={radius * 2} height={radius * 2}

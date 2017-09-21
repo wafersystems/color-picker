@@ -21,7 +21,8 @@ export default class extends React.Component {
 			},
 			selected: 'colorBg',
 			area: 1,
-      channel: {r:1, g: 2, b: 3}
+      channel: {r:1, g: 2, b: 3},
+      _switch: false
 		}
 	}
 
@@ -36,7 +37,7 @@ export default class extends React.Component {
 	}
 
 	render() {
-		const {color, btnBg, selected, area, channel} = this.state;
+		const {color, btnBg, selected, area, channel, _switch} = this.state;
 		return (
 			<div className={'color-circle'}>
 				<div className={'color-circle-btn'}>
@@ -54,18 +55,25 @@ export default class extends React.Component {
 					</div>
 				</div>
 				<div style={{display: selected === 'colorBg' ? 'block' : 'none'}}>
-					<ColorCircle onFetch={() => colorChange(area, {r: channel.r, g: channel.g, b: channel.b}, color.rgb)} color={color} onChange={v => this.setState({color: v})} onSwitch={v => sceneChange(area, v ? 1 : 4)}/>
+					<ColorCircle onFetch={() => colorChange(area, {r: channel.r, g: channel.g, b: channel.b}, color.rgb)}
+                       color={color} _switch={_switch}
+                       onChange={v => this.setState({color: v})}
+                       onSwitch={v => this.setState({_switch: v}, () => sceneChange(area, v ? 1 : 4))}/>
 				</div>
 				<div style={{display: selected === 'saturationBg' ? 'block' : 'none'}}>
-					<SaturationCircle onFetch={() => colorChange(area, {r: channel.r, g: channel.g, b: channel.b}, color.rgb)}  color={color} onChange={v => this.setState({color: v})} onSwitch={v => sceneChange(area, v ? 1 : 4)}/>
+					<SaturationCircle onFetch={() => colorChange(area, {r: channel.r, g: channel.g, b: channel.b}, color.rgb)}
+                            color={color} _switch={_switch}
+                            onChange={v => this.setState({color: v})}
+                            onSwitch={v => this.setState({_switch: v}, () => sceneChange(area, v ? 1 : 4))}/>
 				</div>
 				<div style={{display: selected === 'brightnessBg' ? 'block' : 'none'}}>
-					<Brightness onChange={v => {
+					<Brightness  _switch={_switch} onChange={v => {
 						color.hsl.l = v;
 						const rgb = hslToRgb({...color.hsl});
 						const htmlColor = colorPicker(rgb);
 						this.setState({brightness: v, color: {htmlColor, hsl: {...color.hsl, l: v}, rgb}});
-					}} onFetch={() => colorChange(area, {r: channel.r, g: channel.g, b: channel.b}, color.rgb)}  onSwitch={v => sceneChange(area, v ? 1 : 4)}/>
+					}} onFetch={() => colorChange(area, {r: channel.r, g: channel.g, b: channel.b}, color.rgb)}
+                       onSwitch={v => this.setState({_switch: v}, () => sceneChange(area, v ? 1 : 4))}/>
 				</div>
 			</div>
 		);
