@@ -8,7 +8,6 @@
 
 # production
 /build
-/dist
 
 # misc
 .DS_Store
@@ -53,3 +52,4 @@ bower_components/
 
 # IDE/Editor data
 .idea
+/dist
