@@ -1,1 +1,32 @@
 # color-picker
+ This project is a demo for smart lighting.
+ 
+## Dev
+ http://localhost:8000/color/{area}?r={r}&g={g}&b={b}
+
+  * area: lighting area id, required
+  * r: r channel of rgb, no required, default: 1
+  * g: g channel of rgb, no required, default: 2
+  * b: b channel of rgb, no required, default: 3
+  
+  http://localhost:8000/temperature/{area}?w={w}&c={c}
+  
+  * area: lighting area id, required
+  * w: w is warn color channel of temperature, no required, default: 1
+  * c: c is cool color channel of temperature, no required, default: 2
+  
+## Product
+ http://localhost:8000/color.html?area={area}?r={r}&g={g}&b={b}
+
+  * area: lighting area id, required
+  * r: r channel of rgb, no required, default: 1
+  * g: g channel of rgb, no required, default: 2
+  * b: b channel of rgb, no required, default: 3
+  
+  http://localhost:8000/temperature.html?area={area}?w={w}&c={c}
+  
+  * area: lighting area id, required
+  * w: w is warn color channel of temperature, no required, default: 1
+  * c: c is cool color channel of temperature, no required, default: 2
+  
+  
