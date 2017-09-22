@@ -76,7 +76,8 @@ class Brightness extends Component {
 					<image xlinkHref={image} width={square} height={square} x={(radius * 2 - square) / 2}
 					       y={(radius * 2 - square) / 2}/>
 					<image xlinkHref={require(_switch ? './but_on.png': './but_off.png')} width={110} height={110} x={square / 2 - 6}
-					       y={(square) / 2 - 5} onTouchEnd={e => {e.stopPropagation(); e.preventDefault(); this.setState({_switch: !_switch}, () => onSwitch && onSwitch(!_switch))}}/>
+					       y={(square) / 2 - 5} onTouchEnd={e => {e.stopPropagation(); e.preventDefault(); this.setState({_switch: !_switch}, () => onSwitch && onSwitch(!_switch))}}
+                 onClick={e => {e.stopPropagation(); e.preventDefault();this.setState({_switch: !_switch}, () => onSwitch && onSwitch(!_switch))}}/>
 					<g fill={'#6C6D83'} transform={`translate(${x}, ${y}) rotate(${rotate} 0 0) scale(${scale})`}
 					   onTouchStart={() => {
 						   this.setState({isMove: true})

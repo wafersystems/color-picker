@@ -120,7 +120,8 @@ const Saturation = class extends Component {
                   transform={`rotate(${-90} ${diameter / 2} ${diameter / 2})`}
 					        strokeDasharray={`${radius * 3.15} ${radius * 3.15}`}/>
 					<image xlinkHref={require(_switch ? './but_on.png': './but_off.png')} width={120} height={120} x={diameter / 2 - 60}
-					       y={(diameter) / 2 - 60} onTouchEnd={e => {e.stopPropagation(); e.preventDefault(); this.setState({_switch: !_switch}, () => onSwitch && onSwitch(!_switch))}}/>
+					       y={(diameter) / 2 - 60} onTouchEnd={e => {e.stopPropagation(); e.preventDefault(); this.setState({_switch: !_switch}, () => onSwitch && onSwitch(!_switch))}}
+                 onClick={e => {e.stopPropagation(); e.preventDefault();this.setState({_switch: !_switch}, () => onSwitch && onSwitch(!_switch))}}/>
 					<g fill={'#6C6D83'} transform={`translate(${x}, ${y}) rotate(${rotate} 0 0) scale(${scale})`}
 					   onTouchStart={() => {
 						   this.setState({isMove: true})

@@ -9,7 +9,7 @@
 const path = require('path');
 const srcPath = path.join(__dirname, '/../src');
 const dfltPort = 8000;
-const dfltHost = '192.168.204.53';
+const dfltHost = '10.1.1.8';
 
 /**
  * Get the default modules object for webpack

@@ -84,7 +84,7 @@ export default class extends React.Component {
 	fetchLighting() {
 	  const {color, channel, area} = this.state;
     const {rgb} = color;
-	  if(this.temp.r !== rgb.r && this.temp.g !== rgb.g && this.temp.b !== rgb.b) {
+	  if(this.temp.r !== rgb.r || this.temp.g !== rgb.g || this.temp.b !== rgb.b) {
       colorChange(area, {r: channel.r, g: channel.g, b: channel.b}, rgb);
       this.temp = rgb;
     }

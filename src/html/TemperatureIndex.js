@@ -20,7 +20,7 @@ export default class extends React.Component {
       channel: {c: 1, w: 2},
       _switch: false
     };
-    this.temp = {t: 0, b: 0};
+    this.temp = {t: 180, b: 50};
     this.fetchLighting = this.fetchLighting.bind(this);
   }
 
@@ -54,14 +54,14 @@ export default class extends React.Component {
         </div>
         <div style={{display: selected === 'brightnessBg' ? 'block' : 'none'}}>
           <Brightness _switch={_switch} onFetch={() => this.fetchLighting()}
-                      onChange={v => this.setState({brightness: v})} onSwitch={v => this.setState({_switch: v}, () => sceneChange(area, v ? 1 : 4))}/>
+                      onChange={v => this.setState({brightness: Math.round(v)})} onSwitch={v => this.setState({_switch: v}, () => sceneChange(area, v ? 1 : 4))}/>
         </div>
       </div>
     );
   }
   fetchLighting() {
     const {channel, area, temperature, brightness} = this.state;
-    if(this.temp.t !== temperature  && this.temp.b !== brightness) {
+    if(this.temp.t !== temperature  || this.temp.b !== brightness) {
       temperatureChange(area, {c: channel.c, w: channel.w}, temperature, brightness);
       this.temp = {t: temperature, b: brightness};
     }
