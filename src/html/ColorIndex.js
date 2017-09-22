@@ -23,7 +23,9 @@ export default class extends React.Component {
 			area: 1,
       channel: {r:1, g: 2, b: 3},
       _switch: false
-		}
+		};
+		this.temp = {r: 0, g: 0, b: 0};
+		this.fetchLighting = this.fetchLighting.bind(this);
 	}
 
 	componentWillMount() {
@@ -37,7 +39,7 @@ export default class extends React.Component {
 	}
 
 	render() {
-		const {color, btnBg, selected, area, channel, _switch} = this.state;
+		const {color, btnBg, selected, area, _switch} = this.state;
 		return (
 			<div className={'color-circle'}>
 				<div className={'color-circle-btn'}>
@@ -55,13 +57,13 @@ export default class extends React.Component {
 					</div>
 				</div>
 				<div style={{display: selected === 'colorBg' ? 'block' : 'none'}}>
-					<ColorCircle onFetch={() => colorChange(area, {r: channel.r, g: channel.g, b: channel.b}, color.rgb)}
+					<ColorCircle onFetch={() => this.fetchLighting()}
                        color={color} _switch={_switch}
                        onChange={v => this.setState({color: v})}
                        onSwitch={v => this.setState({_switch: v}, () => sceneChange(area, v ? 1 : 4))}/>
 				</div>
 				<div style={{display: selected === 'saturationBg' ? 'block' : 'none'}}>
-					<SaturationCircle onFetch={() => colorChange(area, {r: channel.r, g: channel.g, b: channel.b}, color.rgb)}
+					<SaturationCircle onFetch={() => this.fetchLighting()}
                             color={color} _switch={_switch}
                             onChange={v => this.setState({color: v})}
                             onSwitch={v => this.setState({_switch: v}, () => sceneChange(area, v ? 1 : 4))}/>
@@ -72,11 +74,19 @@ export default class extends React.Component {
 						const rgb = hslToRgb({...color.hsl});
 						const htmlColor = colorPicker(rgb);
 						this.setState({brightness: v, color: {htmlColor, hsl: {...color.hsl, l: v}, rgb}});
-					}} onFetch={() => colorChange(area, {r: channel.r, g: channel.g, b: channel.b}, color.rgb)}
+					}} onFetch={() => this.fetchLighting()}
                        onSwitch={v => this.setState({_switch: v}, () => sceneChange(area, v ? 1 : 4))}/>
 				</div>
 			</div>
 		);
 	}
 
+	fetchLighting() {
+	  const {color, channel, area} = this.state;
+    const {rgb} = color;
+	  if(this.temp.r !== rgb.r && this.temp.g !== rgb.g && this.temp.b !== rgb.b) {
+      colorChange(area, {r: channel.r, g: channel.g, b: channel.b}, rgb);
+      this.temp = rgb;
+    }
+  }
 }

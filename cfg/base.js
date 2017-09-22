@@ -12,6 +12,7 @@ let additionalPaths = [];
 module.exports = {
   additionalPaths: additionalPaths,
   port: defaultSettings.port,
+  host: defaultSettings.host,
   debug: true,
   devtool: 'eval',
   output: {
@@ -24,6 +25,7 @@ module.exports = {
     historyApiFallback: true,
     hot: true,
     port: defaultSettings.port,
+    host: defaultSettings.host,
     publicPath: defaultSettings.publicPath,
     noInfo: false
   },

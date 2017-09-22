@@ -28,11 +28,9 @@ class Temperature extends Component {
 		});
 	}
 
-	componentDidMount() {
-		document.body.addEventListener('mouseup', () => {
-			this.setState({isMove: false});
-		});
-	}
+  componentDidMount() {
+    document.body.addEventListener('mouseup', () => this.setState({isMove: false}, () => this.props.onFetch && this.props.onFetch()));
+  }
 
 	render() {
 		const {radius, isMove, rotate, x, y, image, arrow, scale, square} = this.state;

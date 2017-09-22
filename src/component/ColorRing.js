@@ -35,11 +35,9 @@ class ColorRing extends Component {
 		});
 	}
 
-	componentDidMount() {
-		document.body.addEventListener('mouseup', () => {
-			this.setState({isMove: false});
-		});
-	}
+  componentDidMount() {
+    document.body.addEventListener('mouseup', () => this.setState({isMove: false}, () => this.props.onFetch && this.props.onFetch()));
+  }
 
 	componentWillReceiveProps(np) {
 		if (!this.state.isMove && np.color && np.color.hsl) {

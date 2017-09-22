@@ -31,6 +31,10 @@ const Saturation = class extends Component {
 		});
 	}
 
+  componentDidMount() {
+    document.body.addEventListener('mouseup', () => this.setState({isMove: false}, () => this.props.onFetch && this.props.onFetch()));
+  }
+
 	render() {
 		let {color, diameter, stroke, isMove, arrow, rotate, adjustAngle, scale, x, y, radius} = this.state;
 		const {onSwitch, onFetch, _switch} = this.props;
@@ -108,10 +112,12 @@ const Saturation = class extends Component {
 						</linearGradient>
 					</defs>
 					<circle cx={diameter / 2} cy={diameter / 2} r={radius} strokeWidth={stroke} stroke={'url(#left)'} fill="none"
-					        transform={`matrix(0,-1,1,0,0, ${diameter})`}
+					        // transform={`matrix(0,-1,1,0,0, ${diameter})`}
+                  transform={`rotate(${-90} ${diameter / 2} ${diameter / 2})`}
 					        strokeDasharray={`0 ${radius * 3.14} ${radius * 3.14}`}/>
 					<circle cx={diameter / 2} cy={diameter / 2} r={radius} strokeWidth={stroke} stroke={'url(#right)'} fill="none"
-					        transform={`matrix(0,-1,1,0,0, ${diameter})`}
+					        // transform={`matrix(0,-1,1,0,0, ${diameter})`}
+                  transform={`rotate(${-90} ${diameter / 2} ${diameter / 2})`}
 					        strokeDasharray={`${radius * 3.15} ${radius * 3.15}`}/>
 					<image xlinkHref={require(_switch ? './but_on.png': './but_off.png')} width={120} height={120} x={diameter / 2 - 60}
 					       y={(diameter) / 2 - 60} onTouchEnd={e => {e.stopPropagation(); e.preventDefault(); this.setState({_switch: !_switch}, () => onSwitch && onSwitch(!_switch))}}/>

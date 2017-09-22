@@ -7,6 +7,14 @@ body, html {
 rect {
   fill-opacity: 0;
 }
+circle
+{
+  /*transform:rotate(-90deg);*/
+  /*-ms-transform:rotate(-90deg); 	!* IE 9 *!*/
+  /*-moz-transform:rotate(-90deg); 	!* Firefox *!*/
+  /*-webkit-transform:rotate(-90deg); !* Safari 和 Chrome *!*/
+  /*-o-transform:rotate(-90deg); 	!* Opera *!*/
+}
 .color-circle {
   border-top: 2px solid #eeeeee;
 }
