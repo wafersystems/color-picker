@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-fetch';
+
 export const sceneChange = (area, scene) => {
   fetch(`${location.protocol}//${location.host}/SetDyNet.cgi?a=${area}&p=${scene}`);
 };
