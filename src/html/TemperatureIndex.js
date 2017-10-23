@@ -68,6 +68,7 @@ export default class extends React.Component {
       </div>
     );
   }
+
   fetchLighting() {
     const {channel, area, temperature, brightness} = this.state;
     if(this.temp.t !== temperature  || this.temp.b !== brightness) {

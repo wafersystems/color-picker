@@ -5,12 +5,9 @@ export const sceneChange = (area, scene) => {
 };
 
 export const colorChange = (area, channel, color) => { //channel : {r, g, b} ; color: {r, g, b}
-  const r = Math.round(color.r / 2.55);
-  const g = Math.round(color.g / 2.55);
-  const b = Math.round(color.b / 2.55);
-  fetch(`${location.protocol}//${location.host}/SetDyNet.cgi?a=${area}&c=${channel.r}&l=${r}`);
-  fetch(`${location.protocol}//${location.host}/SetDyNet.cgi?a=${area}&c=${channel.g}&l=${g}`);
-  fetch(`${location.protocol}//${location.host}/SetDyNet.cgi?a=${area}&c=${channel.b}&l=${b}`);
+  fetch(`${location.protocol}//${location.host}/SetDyNet.cgi?a=${area}&c=${channel.r}&l=${color.r}`);
+  fetch(`${location.protocol}//${location.host}/SetDyNet.cgi?a=${area}&c=${channel.g}&l=${color.g}`);
+  fetch(`${location.protocol}//${location.host}/SetDyNet.cgi?a=${area}&c=${channel.b}&l=${color.b}`);
 };
 
 export const temperatureChange = (area, channel, temperature, brightness) => {// temperature angle, brightness angle , channel: {c, w}
