@@ -30,4 +30,8 @@
   * w: w is warn color channel of temperature, no required, default: 1
   * c: c is cool color channel of temperature, no required, default: 2
   
+## Debugger
+  在query中添加debugger=true参数实现debugger，可以查看相应的值，以及转化后的值。
+  eg: http://localhost:8000/color.html?debugger=true
+  
   

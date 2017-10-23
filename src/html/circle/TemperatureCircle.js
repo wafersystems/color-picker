@@ -5,7 +5,7 @@ import Temperature from '../../component/Temperature';
 export default class extends React.Component {
 	constructor() {
 		super(...arguments);
-		this.state = {color: {r: 255, g: 0, b: 0}, saturation: 4300}
+		this.state = {color: {r: 255, g: 0, b: 0}, saturation: 4600}
 	}
 
 	render() {

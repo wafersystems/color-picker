@@ -10,7 +10,7 @@ export default class extends React.Component {
 	constructor() {
 		super(...arguments);
 		this.state = {
-			color: {htmlColor: '#ff0000', rgb: {r: 255, g: 0, b: 0}, hsl: {h: 0, s: 0.5, l: 0.5}},
+			color: {htmlColor: '#ff0000', rgb: {r: 255, g: 0, b: 0}, hsl: {h: 0, s: 50, l: 50}},
 			saturation: 4300,
 			brightness: 50,
 			btnBg: {
@@ -22,7 +22,8 @@ export default class extends React.Component {
 			selected: 'colorBg',
 			area: 1,
       channel: {r:1, g: 2, b: 3},
-      _switch: false
+      _switch: false,
+      'debugger': false
 		};
 		this.temp = {r: 0, g: 0, b: 0};
 		this.fetchLighting = this.fetchLighting.bind(this);
@@ -35,7 +36,8 @@ export default class extends React.Component {
     const r = getUrlParam('r') || this.state.channel.r;
     const g = getUrlParam('g') || this.state.channel.g;
     const b = getUrlParam('b') || this.state.channel.b;
-		this.setState({area, channel: {r, g, b}});
+    const _debugger = Boolean(getUrlParam('debugger'));
+		this.setState({area, channel: {r, g, b}, 'debugger': _debugger});
 	}
 
 	render() {
@@ -77,6 +79,14 @@ export default class extends React.Component {
 					}} onFetch={() => this.fetchLighting()}
                        onSwitch={v => this.setState({_switch: v}, () => sceneChange(area, v ? 1 : 4))}/>
 				</div>
+        {
+          this.state.debugger && <div className={'debugger'}>
+            <p>控制台：</p>
+            <p>HSL: 色相：{color.hsl.h.toFixed(5)}    饱和度：{color.hsl.s.toFixed(5)}    亮度：{color.hsl.l.toFixed(5)}</p>
+            <p>RGB: R：{color.rgb.r}->{Math.round(color.rgb.r/2.55)}   G：{color.rgb.g}->{Math.round(color.rgb.g/2.55)}    B：{color.rgb.b}->{Math.round(color.rgb.b/2.55)}</p>
+            <p style={{color: color.htmlColor}}>Hex: {color.htmlColor}</p>
+          </div>
+        }
 			</div>
 		);
 	}

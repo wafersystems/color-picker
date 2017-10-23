@@ -10,7 +10,7 @@ const Saturation = class extends Component {
 		this.state = {
 			color: {r: 255, g: 0, b: 0}, radius: 100, diameter: 400, stroke: 70, x: 180, y: 0, isMove: false,
 			rotate: 0,
-			adjustAngle: 6,
+			adjustAngle: 5,
 			arrow: Arrow,
 			scale: 1,
 			_switch: false
@@ -39,7 +39,7 @@ const Saturation = class extends Component {
 		let {color, diameter, stroke, isMove, arrow, rotate, adjustAngle, scale, x, y, radius} = this.state;
 		const {onSwitch, onFetch, _switch} = this.props;
 		color = this.props.color || color;
-		let hsl = rgbToHsl({...color});
+		let hsl = this.props.hsl || rgbToHsl({...color});
 		const color0 = colorPicker(hslToRgb({...hsl, s: 1}));
 		const color1 = colorPicker(hslToRgb({...hsl, s: 0.5}));
 		const color2 = colorPicker(hslToRgb({...hsl, s: 0}));
@@ -58,6 +58,7 @@ const Saturation = class extends Component {
 						                 y: diameter / 2 - cy
 					                 }, () => {
 						                 if (this.props.onChange) {
+                               a = (a+adjustAngle);
 							                 if(a >= 0 && a < 180) {
 								                 a = 180 - a;
 							                 }else {

@@ -18,7 +18,8 @@ export default class extends React.Component {
       selected: 'temperatureBg',
       area: 1,
       channel: {c: 1, w: 2},
-      _switch: false
+      _switch: false,
+      'debugger': false
     };
     this.temp = {t: 180, b: 50};
     this.fetchLighting = this.fetchLighting.bind(this);
@@ -30,7 +31,8 @@ export default class extends React.Component {
     const area = this.props.match && this.props.match.params.area || getUrlParam('area') || 1;
     const c = getUrlParam('c') || this.state.channel.c;
     const w = getUrlParam('w') || this.state.channel.w;
-    this.setState({area, channel: {c, w}});
+    const _debugger = Boolean(getUrlParam('debugger'));
+    this.setState({area, channel: {c, w}, 'debugger': _debugger});
   }
 
   render() {
@@ -56,6 +58,13 @@ export default class extends React.Component {
           <Brightness _switch={_switch} onFetch={() => this.fetchLighting()}
                       onChange={v => this.setState({brightness: Math.round(v)})} onSwitch={v => this.setState({_switch: v}, () => sceneChange(area, v ? 1 : 4))}/>
         </div>
+        {
+          this.state.debugger && <div className={'debugger'}>
+            <p>控制台：</p>
+            <p>色温: {this.state.temperature} -> {Math.round((this.state.temperature)/360 * 3800) + 2700}</p>
+            <p>亮度: {this.state.brightness}</p>
+          </div>
+        }
       </div>
     );
   }

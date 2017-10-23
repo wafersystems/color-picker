@@ -66,7 +66,7 @@ const hue2rgb = (p, q, t) => {
 	return p;
 };
 
-const bound01 = (n, max) => {
+export const bound01 = (n, max) => {
 	if (typeof n === 'string' && n.indexOf('.') !== -1 && parseFloat(n) === 1) {
 		n = '100%';
 	}

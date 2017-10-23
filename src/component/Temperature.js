@@ -34,7 +34,7 @@ class Temperature extends Component {
 
 	render() {
 		const {radius, isMove, rotate, x, y, image, arrow, scale, square} = this.state;
-		const {adjustAngle = 6, onSwitch, onFetch, _switch} = this.props;
+		const {adjustAngle = 5, onSwitch, onFetch, _switch} = this.props;
 		return (
 			<ReactSVGPanZoom width={radius * 2} height={radius * 2}
 			                 toolbarPosition="none" tool={'none'} detectPinchGesture={false} detectAutoPan={false}
@@ -43,14 +43,14 @@ class Temperature extends Component {
 			                 onTouchEnd={() => {this.setState({isMove: false}); onFetch && onFetch()}}
 			                 onTouchMove={e => {
 				                 if (isMove) {
-					                 const {cx, cy, a} = getPointer(radius, e.changedPoints[0].x, e.changedPoints[0].y, rotate);
+					                 let {cx, cy, a} = getPointer(radius, e.changedPoints[0].x, e.changedPoints[0].y, rotate);
 					                 this.setState({
 						                 rotate: (a + adjustAngle) % 360,
 						                 x: radius - cx,
 						                 y: radius - cy
 					                 }, () => {
 						                 if (this.props.onChange) {
-							                 this.props.onChange(a % 360);
+							                 this.props.onChange((a+adjustAngle) % 360);
 						                 }
 					                 });
 				                 }
@@ -64,7 +64,7 @@ class Temperature extends Component {
 						                 y: radius - cy
 					                 }, () => {
 						                 if (this.props.onChange) {
-							                 this.props.onChange(a % 360);
+							                 this.props.onChange((a+adjustAngle) % 360);
 						                 }
 					                 });
 				                 }
