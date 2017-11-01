@@ -22,7 +22,7 @@ export default class extends React.Component {
       _switch: false,
       'debugger': false
     };
-    this.temp = {t: 180, b: 50};
+    this.temp = {t: 4700, b: 50};
     this.fetchLighting = this.fetchLighting.bind(this);
   }
 
@@ -84,9 +84,9 @@ export default class extends React.Component {
 
   fetchLighting() {
     const {channel, area, brightness, index} = this.state;
-    if(this.temp.t !== temperatureList[index] || this.temp.b !== brightness) {
+    if(this.temp.t !== temperatureList[index].temperature || this.temp.b !== brightness) {
       temperatureChange(area, {c: channel.c, w: channel.w}, temperatureList[index], brightness);
-      this.temp = {t: temperatureList[index], b: brightness};
+      this.temp = {t: temperatureList[index].temperature, b: brightness};
     }
   }
 }
