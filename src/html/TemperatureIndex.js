@@ -2,7 +2,7 @@ import React from 'react';
 import './color.css';
 import Temperature from './circle/TemperatureCircle';
 import Brightness from './circle/BrightnessCircle';
-import {sceneChange, temperatureChange, getUrlParam} from './request';
+import {sceneChange, temperatureChange, getUrlParam, getSwitch} from './request';
 import {temperatureList, temperatureBrightness} from '../component/constant'
 
 export default class extends React.Component {
@@ -33,6 +33,13 @@ export default class extends React.Component {
     const c = getUrlParam('c') || this.state.channel.c;
     const w = getUrlParam('w') || this.state.channel.w;
     const _debugger = Boolean(getUrlParam('debugger'));
+    let _switch = false;
+    new Promise(resolve => {
+      resolve(getSwitch(area));
+    }).then(d => d.text()).then(data => {
+      _switch = data && data.split('=')[1] !== 4;
+      this.setState({_switch});
+    });
     this.setState({area, channel: {c, w}, 'debugger': _debugger});
   }
 
@@ -68,6 +75,7 @@ export default class extends React.Component {
             <p>控制台：</p>
             <p>色温: {temperatureList[this.state.index].temperature}</p>
             <p>亮度: {this.state.brightness}</p>
+            <p>开关状态： {_switch ? '开' : '关'}</p>
           </div>
         }
       </div>
