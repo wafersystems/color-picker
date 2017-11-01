@@ -4,6 +4,7 @@ import ColorCircle from './circle/ColorCircle';
 import SaturationCircle from './circle/SaturationCircle';
 import Brightness from './circle/BrightnessCircle';
 import {sceneChange, colorChange, getUrlParam} from './request';
+import {colorBrightness} from '../component/constant'
 
 export default class extends React.Component {
 	constructor() {
@@ -70,9 +71,10 @@ export default class extends React.Component {
                             onSwitch={v => this.setState({_switch: v}, () => sceneChange(area, v ? 1 : 4))}/>
 				</div>
 				<div style={{display: selected === 'brightnessBg' ? 'block' : 'none'}}>
-					<Brightness  _switch={_switch} onChange={v => {
-						this.setState({brightness: v});
-					}} onFetch={() => this.fetchLighting()}
+					<Brightness  _switch={_switch}
+                       values={colorBrightness}
+                       onChange={v => this.setState({brightness: v})}
+                       onFetch={() => this.fetchLighting()}
                        onSwitch={v => this.setState({_switch: v}, () => sceneChange(area, v ? 1 : 4))}/>
 				</div>
         {
@@ -90,10 +92,12 @@ export default class extends React.Component {
 	fetchLighting() {
 	  const {color, channel, area, brightness} = this.state;
     let {rgb} = color;
-	  if(this.temp.r !== rgb.r || this.temp.g !== rgb.g || this.temp.b !== rgb.b) {
+    console.log(this.temp, rgb)
+	  if(this.temp.r !== rgb.r || this.temp.g !== rgb.g || this.temp.b !== rgb.b || this.temp.brightness != brightness) {
+      this.temp = rgb;
+      this.temp.brightness = brightness;
       rgb = {r: Math.round(rgb.r / 2.55 * brightness / 100), g: Math.round(rgb.g / 2.55 * brightness / 100), b: Math.round(rgb.b / 2.55 * brightness / 100)};
       colorChange(area, {r: channel.r, g: channel.g, b: channel.b}, rgb);
-      this.temp = rgb;
     }
   }
 }

@@ -34,7 +34,7 @@ class Brightness extends Component {
 
 	render() {
 		const {radius, isMove, rotate, x, y, image, arrow, scale, square} = this.state;
-		const {adjustAngle = 5, onSwitch, onFetch, _switch} = this.props;
+		const {adjustAngle = 5, onSwitch, onFetch, _switch, values} = this.props;
 		return (
 			<ReactSVGPanZoom width={radius * 2} height={radius * 2}
 			                 toolbarPosition="none" tool={'none'} detectPinchGesture={false} detectAutoPan={false}
@@ -50,7 +50,9 @@ class Brightness extends Component {
 						                 y: radius - cy
 					                 }, () => {
 						                 if (this.props.onChange) {
-							                 this.props.onChange((a+adjustAngle) % 360);
+                               const brightness = values.find(v => v >= 100 - (540 - a - adjustAngle) % 360 / 3.6);
+                               this.props.onChange(brightness);
+                               onFetch && onFetch();
 						                 }
 					                 });
 				                 }
@@ -64,7 +66,9 @@ class Brightness extends Component {
 						                 y: radius - cy
 					                 }, () => {
 						                 if (this.props.onChange) {
-							                 this.props.onChange((a+adjustAngle) % 360);
+                               const brightness = values.find(v => v >= 100 - (540 - a - adjustAngle) % 360 / 3.6);
+							                 this.props.onChange(brightness);
+                               onFetch && onFetch();
 						                 }
 					                 });
 				                 }

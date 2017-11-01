@@ -6,7 +6,8 @@
   "scripts": {
     "clean": "rimraf dist/*",
     "copy": "copyfiles -f ./src/color.html ./src/temperature.html ./src/favicon.ico ./dist",
-    "dist": "npm run copy & webpack --env=dist",
+    "copyjs": "copyfiles -f ./node_modules/es5-shim/es5-shim.min.js ./node_modules/es5-shim/es5-sham.min.js ./node_modules/html5shiv/dist/html5shiv.min.js ./node_modules/matchmedia-polyfill/matchMedia.js ./dist/js",
+    "dist": "npm run copy & npm run copyjs & webpack --env=dist",
     "lint": "eslint ./src",
     "posttest": "npm run lint",
     "release:major": "npm version major && npm publish && git push --follow-tags",
@@ -62,6 +63,10 @@
   },
   "dependencies": {
     "core-js": "^2.0.0",
+    "es5-shim": "^4.5.9",
+    "es6-promise": "^4.1.1",
+    "es6-shim": "^0.35.3",
+    "html5shiv": "^3.7.3",
     "normalize.css": "^4.0.0",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",

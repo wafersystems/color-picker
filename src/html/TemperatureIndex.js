@@ -3,13 +3,14 @@ import './color.css';
 import Temperature from './circle/TemperatureCircle';
 import Brightness from './circle/BrightnessCircle';
 import {sceneChange, temperatureChange, getUrlParam} from './request';
+import {temperatureList, temperatureBrightness} from '../component/constant'
 
 export default class extends React.Component {
   constructor() {
     super(...arguments);
     this.state = {
       brightness: 50,
-      temperature: 180,
+      index: 4,
       btnBg: {
         temperatureBg: require('./images/but_color-temperature_small.png'),
         brightnessBg: require('./images/but_brightness.png'),
@@ -52,16 +53,20 @@ export default class extends React.Component {
 
         <div style={{display: selected === 'temperatureBg' ? 'block' : 'none'}}>
           <Temperature _switch={_switch} onFetch={() => this.fetchLighting()}
-                       onChange={v => this.setState({temperature: v})} onSwitch={v => this.setState({_switch: v}, () => sceneChange(area, v ? 1 : 4))}/>
+                       onChange={(temperature, index) => this.setState({index: index})}
+                       onSwitch={v => this.setState({_switch: v}, () => sceneChange(area, v ? 1 : 4))}/>
         </div>
         <div style={{display: selected === 'brightnessBg' ? 'block' : 'none'}}>
-          <Brightness _switch={_switch} onFetch={() => this.fetchLighting()}
-                      onChange={v => this.setState({brightness: Math.round(v)})} onSwitch={v => this.setState({_switch: v}, () => sceneChange(area, v ? 1 : 4))}/>
+          <Brightness _switch={_switch}
+                      values={temperatureBrightness}
+                      onFetch={() => this.fetchLighting()}
+                      onChange={v => this.setState({brightness: v})}
+                      onSwitch={v => this.setState({_switch: v}, () => sceneChange(area, v ? 1 : 4))}/>
         </div>
         {
           this.state.debugger && <div className={'debugger'}>
             <p>控制台：</p>
-            <p>色温: {this.state.temperature} -> {Math.round((this.state.temperature)/360 * 3800) + 2700}</p>
+            <p>色温: {temperatureList[this.state.index].temperature}</p>
             <p>亮度: {this.state.brightness}</p>
           </div>
         }
@@ -70,10 +75,10 @@ export default class extends React.Component {
   }
 
   fetchLighting() {
-    const {channel, area, temperature, brightness} = this.state;
-    if(this.temp.t !== temperature  || this.temp.b !== brightness) {
-      temperatureChange(area, {c: channel.c, w: channel.w}, temperature, brightness);
-      this.temp = {t: temperature, b: brightness};
+    const {channel, area, brightness, index} = this.state;
+    if(this.temp.t !== temperatureList[index] || this.temp.b !== brightness) {
+      temperatureChange(area, {c: channel.c, w: channel.w}, temperatureList[index], brightness);
+      this.temp = {t: temperatureList[index], b: brightness};
     }
   }
 }

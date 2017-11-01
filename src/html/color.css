@@ -3,6 +3,11 @@ body, html {
   padding: 0;
   font-size: 12px;
   background-color: #eaebed;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -webkit-touch-callout: none;
 }
 rect {
   fill-opacity: 0;
@@ -23,6 +28,7 @@ circle
   width: 100%;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 .color-circle-btn .btn-item {
   width: 4rem;

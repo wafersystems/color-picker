@@ -11,9 +11,8 @@ export const colorChange = (area, channel, color) => { //channel : {r, g, b} ; c
 };
 
 export const temperatureChange = (area, channel, temperature, brightness) => {// temperature angle, brightness angle , channel: {c, w}
-  const cool = Math.round(temperature / 3.6);
-  fetch(`${location.protocol}//${location.host}/SetDyNet.cgi?a=${area}&c=${channel.c}&l=${Math.round(cool * brightness / 100)}`);
-  fetch(`${location.protocol}//${location.host}/SetDyNet.cgi?a=${area}&c=${channel.w}&l=${Math.round((100 - cool) * brightness / 100)}`);
+  fetch(`${location.protocol}//${location.host}/SetDyNet.cgi?a=${area}&c=${channel.c}&l=${Math.round(temperature.cw * brightness)}`);
+  fetch(`${location.protocol}//${location.host}/SetDyNet.cgi?a=${area}&c=${channel.w}&l=${Math.round((1 - temperature.cw) * brightness)}`);
 };
 
 export const getUrlParam = (name) => {

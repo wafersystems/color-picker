@@ -10,18 +10,14 @@ export default class extends React.Component {
 
 	render() {
 		const {brightness} = this.state;
-		const {onChange, onSwitch, onFetch, _switch} = this.props;
+		const {onChange, onSwitch, onFetch, _switch, values} = this.props;
 		return (
 				<div className={'color-circle-component'}>
 					<span className={'saturation'}>{brightness}%</span>
-					<Brightness square={220} radius={160} scale={0.5} onChange={v => {
-						if(v >= 0 && v < 180) {
-							v += 180;
-						}else {
-							v -= 180;
-						}
-						this.setState({brightness: Math.round(v/3.6)}, () => onChange && onChange(v / 3.6))}
-					} onSwitch={v => onSwitch && onSwitch(v)} onFetch={onFetch} _switch={_switch}/>
+					<Brightness square={220} radius={160} scale={0.5}
+                      values={values}
+                      onChange={v => this.setState({brightness: v}, () => onChange && onChange(v))}
+                      onSwitch={v => onSwitch && onSwitch(v)} onFetch={onFetch} _switch={_switch}/>
 				</div>
 		);
 	}
