@@ -16,7 +16,7 @@ class Brightness extends Component {
 	}
 
 	componentWillMount() {
-		const {radius, offset = 18, image, arrow, scale, square} = this.props;
+		const {radius, offset = 12, image, arrow, scale, square} = this.props;
 		const {state} = this;
 		this.setState({
 			radius: radius || state.radius,
@@ -79,8 +79,8 @@ class Brightness extends Component {
 					        strokeOpacity={1}/>
 					<image xlinkHref={image} width={square} height={square} x={(radius * 2 - square) / 2}
 					       y={(radius * 2 - square) / 2}/>
-					<image xlinkHref={require(_switch ? './but_on.png': './but_off.png')} width={110} height={110} x={square / 2 - 6}
-					       y={(square) / 2 - 5} onTouchEnd={e => {e.stopPropagation(); e.preventDefault(); this.setState({_switch: !_switch}, () => onSwitch && onSwitch(!_switch))}}
+					<image xlinkHref={require(_switch ? './but_on.png': './but_off.png')} width={square/2} height={square/2} x={square / 2 - radius/2}
+					       y={(square) / 2 - radius/2} onTouchEnd={e => {e.stopPropagation(); e.preventDefault(); this.setState({_switch: !_switch}, () => onSwitch && onSwitch(!_switch))}}
                  onClick={e => {e.stopPropagation(); e.preventDefault(); this.setState({_switch: !_switch}, () => onSwitch && onSwitch(!_switch))}}/>
 					<g fill={'#6C6D83'} transform={`translate(${x}, ${y}) rotate(${rotate} 0 0) scale(${scale})`}
 					   onTouchStart={() => {

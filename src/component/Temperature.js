@@ -93,9 +93,9 @@ class Temperature extends Component {
                   strokeOpacity={1}/>
           <image xlinkHref={image} width={square} height={square} x={(radius * 2 - square) / 2}
                  y={(radius * 2 - square) / 2}/>
-          <image xlinkHref={require(_switch ? './but_on.png' : './but_off.png')} width={110} height={110}
-                 x={square / 2 - 6}
-                 y={(square) / 2 - 5} onTouchEnd={e => {
+          <image xlinkHref={require(_switch ? './but_on.png' : './but_off.png')} width={square/2} height={square/2}
+                 x={square / 2 - radius/2}
+                 y={(square) / 2 - radius/2} onTouchEnd={e => {
             e.stopPropagation();
             e.preventDefault();
             this.setState({_switch: !_switch}, () => onSwitch && onSwitch(!_switch))

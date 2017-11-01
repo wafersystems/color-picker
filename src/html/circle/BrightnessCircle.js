@@ -14,7 +14,7 @@ export default class extends React.Component {
 		return (
 				<div className={'color-circle-component'}>
 					<span className={'saturation'}>{brightness}%</span>
-					<Brightness square={220} radius={160} scale={0.5}
+					<Brightness square={280} radius={140} scale={1}
                       values={values}
                       onChange={v => this.setState({brightness: v}, () => onChange && onChange(v))}
                       onSwitch={v => onSwitch && onSwitch(v)} onFetch={onFetch} _switch={_switch}/>

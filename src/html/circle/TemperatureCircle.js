@@ -14,7 +14,7 @@ export default class extends React.Component {
     return (
       <div className={'color-circle-component'}>
         <span className={'saturation'}>{saturation}K</span>
-        <Temperature square={220} radius={160} scale={0.5} offset={12} onChange={(temperature, index) => {
+        <Temperature square={280} radius={140} scale={1} offset={12} onChange={(temperature, index) => {
           this.setState({saturation: temperature.temperature}, () => onChange && onChange(temperature, index))
         }
         } onSwitch={v => onSwitch && onSwitch(v)} onFetch={onFetch} _switch={_switch}/>
