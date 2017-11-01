@@ -21,3 +21,7 @@ export const getUrlParam = (name) => {
   if (r !== null) return r[2];
   return null;
 };
+
+export const getSwitch = (area) => {
+  return fetch(`${location.protocol}//${location.host}/GetDyNet.cgi?a=${area}`);
+};

@@ -3,7 +3,7 @@ import './color.css';
 import ColorCircle from './circle/ColorCircle';
 import SaturationCircle from './circle/SaturationCircle';
 import Brightness from './circle/BrightnessCircle';
-import {sceneChange, colorChange, getUrlParam} from './request';
+import {sceneChange, colorChange, getUrlParam, getSwitch} from './request';
 import {colorBrightness} from '../component/constant'
 
 export default class extends React.Component {
@@ -25,18 +25,25 @@ export default class extends React.Component {
       _switch: false,
       'debugger': false
 		};
-		this.temp = {r: 255, g: 0, b: 0};
+		this.temp = {r: 255, g: 0, b: 0, brightness: 50};
 		this.fetchLighting = this.fetchLighting.bind(this);
 	}
 
 	componentWillMount() {
 		document.title = 'Meeting Room';
 		// console.log(this.props)
-    const area = this.props.match && this.props.match.params.area || getUrlParam('area') || 1;
+    const area = this.props.match && this.props.match.params.area || getUrlParam('area') || 2;
     const r = getUrlParam('r') || this.state.channel.r;
     const g = getUrlParam('g') || this.state.channel.g;
     const b = getUrlParam('b') || this.state.channel.b;
     const _debugger = Boolean(getUrlParam('debugger'));
+    let _switch = false;
+    new Promise(resolve => {
+      resolve(getSwitch(area));
+    }).then(d => d.text()).then(data => {
+      _switch = data && data.split('=')[1] !== 4;
+      this.setState({_switch});
+    });
 		this.setState({area, channel: {r, g, b}, 'debugger': _debugger});
 	}
 
@@ -79,10 +86,10 @@ export default class extends React.Component {
 				</div>
         {
           this.state.debugger && <div className={'debugger'}>
-            <p>控制台：</p>
             <p>HSL: 色相：{color.hsl.h.toFixed(0)}    饱和度：{color.hsl.s.toFixed(0)}    亮度：{brightness.toFixed(0)}</p>
             <p>RGB: R：{color.rgb.r}->{Math.round(color.rgb.r/2.55)}   G：{color.rgb.g}->{Math.round(color.rgb.g/2.55)}    B：{color.rgb.b}->{Math.round(color.rgb.b/2.55)}</p>
             <p style={{color: color.htmlColor}}>Hex: {color.htmlColor}</p>
+            <p>开关状态： {_switch ? '开' : '关'}</p>
           </div>
         }
 			</div>
@@ -92,8 +99,7 @@ export default class extends React.Component {
 	fetchLighting() {
 	  const {color, channel, area, brightness} = this.state;
     let {rgb} = color;
-    console.log(this.temp, rgb)
-	  if(this.temp.r !== rgb.r || this.temp.g !== rgb.g || this.temp.b !== rgb.b || this.temp.brightness != brightness) {
+	  if(this.temp.r !== rgb.r || this.temp.g !== rgb.g || this.temp.b !== rgb.b || this.temp.brightness !== brightness) {
       this.temp = rgb;
       this.temp.brightness = brightness;
       rgb = {r: Math.round(rgb.r / 2.55 * brightness / 100), g: Math.round(rgb.g / 2.55 * brightness / 100), b: Math.round(rgb.b / 2.55 * brightness / 100)};
