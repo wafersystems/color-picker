@@ -46,7 +46,7 @@ export default class extends React.Component {
     new Promise(resolve => {
       setTimeout(() => resolve(getSwitch(area)), 2000);
     }).then(d => d.text()).then(data => {
-      _switch = data && typeof data === 'string' && data.split('=')[1] !== 4;
+      _switch = data && typeof data === 'string' && Number(data.split('=')[1]) !== 4;
       this.setState({_switch});
     });
   }
