@@ -37,15 +37,19 @@ export default class extends React.Component {
     const g = getUrlParam('g') || this.state.channel.g;
     const b = getUrlParam('b') || this.state.channel.b;
     const _debugger = Boolean(getUrlParam('debugger'));
-    let _switch = false;
-    new Promise(resolve => {
-      resolve(getSwitch(area));
-    }).then(d => d.text()).then(data => {
-      _switch = data && data.split('=')[1] !== 4;
-      this.setState({_switch});
-    });
 		this.setState({area, channel: {r, g, b}, 'debugger': _debugger});
 	}
+
+	componentDidMount() {
+    const area = this.props.match && this.props.match.params.area || getUrlParam('area') || 2;
+    let _switch = false;
+    new Promise(resolve => {
+      setTimeout(() => resolve(getSwitch(area)), 2000);
+    }).then(d => d.text()).then(data => {
+      _switch = data && typeof data === 'string' && data.split('=')[1] !== 4;
+      this.setState({_switch});
+    });
+  }
 
 	render() {
 		const {color, btnBg, selected, area, _switch, brightness} = this.state;
