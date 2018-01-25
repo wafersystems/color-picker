@@ -19,6 +19,11 @@
   * w: w is warn color channel of temperature, no required, default: 1
   * c: c is cool color channel of temperature, no required, default: 2
   
+  http://localhost:8000/brightness/{area}?b={b}
+    
+  * area: lighting area id, required
+  * b: b is brightness channel, no required, default: 1
+  
 ## Product
  http://localhost:8000/color.html?area={area}?r={r}&g={g}&b={b}
 
