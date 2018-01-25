@@ -17,10 +17,11 @@ export default class extends React.Component {
         normalBg: require('./images/but_normal.png')
       },
       selected: 'temperatureBg',
-      area: 1,
+      area: 2,
       channel: {c: 1, w: 2},
       _switch: false,
-      'debugger': false
+      'debugger': false,
+      agent: 'pc'
     };
     this.temp = {t: 4700, b: 50};
     this.fetchLighting = this.fetchLighting.bind(this);
@@ -29,11 +30,15 @@ export default class extends React.Component {
   componentWillMount() {
     document.title = 'Meeting Room';
     // console.log( this.props);
-    const area = this.props.match && this.props.match.params.area || getUrlParam('area') || 1;
+    const area = this.props.match && this.props.match.params.area || getUrlParam('area') || 2;
     const c = getUrlParam('c') || this.state.channel.c;
     const w = getUrlParam('w') || this.state.channel.w;
     const _debugger = Boolean(getUrlParam('debugger'));
-    this.setState({area, channel: {c, w}, 'debugger': _debugger});
+    let u = navigator.userAgent, agent = 'pc';
+    if (u.indexOf('Android') > -1 || u.indexOf('Adr') > -1 || !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) || !!u.match(/Mac OS X/)) {
+      agent = 'mobile';
+    }
+    this.setState({area, channel: {c, w}, 'debugger': _debugger, agent});
   }
 
   componentDidMount() {
@@ -48,9 +53,10 @@ export default class extends React.Component {
   }
 
   render() {
-    const {btnBg, selected, area, _switch} = this.state;
+    const {btnBg, selected, area, _switch, agent} = this.state;
     return (
-      <div className={'color-circle'}>
+      <div className={`color-circle ${agent === 'pc' ? 'color-circle-edit': ''}`}>
+        <div>
         <div className={'color-circle-btn'}>
           <div className={'btn-item'} onClick={() => this.setState({selected: 'temperatureBg'})}
                style={{background: `url(${btnBg[selected === 'temperatureBg' ? selected : 'normalBg']}) no-repeat 50%`}}>
@@ -82,6 +88,12 @@ export default class extends React.Component {
             <p>开关状态： {_switch ? '开' : '关'}</p>
           </div>
         }
+        </div>
+        {agent === 'pc' && <div className={'edit'}>
+          <div><label>区域:</label><input value={this.state.area} onChange={e => this.setState({area: e.target.value})}/></div>
+          <div><label>通道 - 冷色:</label><input value={this.state.channel.c} onChange={e => this.setState({channel: {...this.state.channel, c: e.target.value}})}/></div>
+          <div><label>通道 - 暖色:</label><input value={this.state.channel.w} onChange={e => this.setState({channel: {...this.state.channel, w: e.target.value}})}/></div>
+        </div>}
       </div>
     );
   }
