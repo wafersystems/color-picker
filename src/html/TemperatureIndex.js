@@ -35,7 +35,7 @@ export default class extends React.Component {
     const w = getUrlParam('w') || this.state.channel.w;
     const _debugger = Boolean(getUrlParam('debugger'));
     let u = navigator.userAgent, agent = 'pc';
-    if (u.indexOf('Android') > -1 || u.indexOf('Adr') > -1 || !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) || !!u.match(/Mac OS X/)) {
+    if (u.indexOf('Android') > -1 || u.indexOf('Adr') > -1 || !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
       agent = 'mobile';
     }
     this.setState({area, channel: {c, w}, 'debugger': _debugger, agent});
