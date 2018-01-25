@@ -2,6 +2,11 @@
  This project is a demo for smart lighting.<br>
  Run only on browsers of mobile devices (mobile phones).
  
+## examples
+![](https://static.oschina.net/uploads/img/201801/25095806_nIlr.png)
+![](https://static.oschina.net/uploads/img/201801/25095757_duwM.png)
+![](https://static.oschina.net/uploads/img/201801/25095751_Zayy.png)
+ 
 ## Dev
  http://localhost:8000/color/{area}?r={r}&g={g}&b={b}
 

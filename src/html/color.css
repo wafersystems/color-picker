@@ -9,20 +9,50 @@ body, html {
   -ms-user-select: none;
   -webkit-touch-callout: none;
 }
+
 rect {
   fill-opacity: 0;
 }
-circle
-{
+
+circle {
   /*transform:rotate(-90deg);*/
   /*-ms-transform:rotate(-90deg); 	!* IE 9 *!*/
   /*-moz-transform:rotate(-90deg); 	!* Firefox *!*/
   /*-webkit-transform:rotate(-90deg); !* Safari 和 Chrome *!*/
   /*-o-transform:rotate(-90deg); 	!* Opera *!*/
 }
+
 .color-circle {
   border-top: 2px solid #eeeeee;
+  display: flex;
+  justify-content: center;
 }
+
+.color-circle-edit > div {
+  width: 50%;
+  padding: 30px;
+}
+
+.edit {
+  font-size: 16px;
+  margin-top: 150px;
+}
+.edit > div {
+  width: 100%;
+  padding: 10px;
+}
+.edit label {
+  display: inline-block;
+  text-align: right;
+  width: 80px;
+  padding: 0 10px;
+}
+
+.edit input {
+  height: 26px;
+}
+
+
 .color-circle-btn {
   margin: 2rem 0;
   width: 100%;
@@ -30,22 +60,26 @@ circle
   justify-content: space-around;
   align-items: center;
 }
+
 .color-circle-btn .btn-item {
   width: 4rem;
   height: 4rem;
   position: relative;
 }
+
 .color-circle-btn .btn-item > span {
   position: absolute;
   width: 7rem;
   bottom: -1.5rem;
   text-align: center;
-  left:-1.5rem;
+  left: -1.5rem;
 }
+
 .color-circle-btn .btn-item > .item-lang {
   width: 10rem;
   left: -3rem;
 }
+
 .color-circle-component {
   display: flex;
   justify-content: center;
@@ -54,11 +88,13 @@ circle
   flex-direction: column;
   align-items: center;
 }
+
 .color-circle-component .color-bg {
   width: 2rem;
   height: 2rem;
   margin-bottom: 1rem;
 }
+
 .color-circle-component .saturation {
   width: 5rem;
   margin-bottom: 1rem;
@@ -75,6 +111,7 @@ circle
   border-top: 1px solid #ddd;
 
 }
+
 p {
   line-height: 0.5;
 }

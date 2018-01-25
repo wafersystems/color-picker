@@ -23,7 +23,8 @@ export default class extends React.Component {
 			area: 1,
       channel: {r:1, g: 2, b: 3},
       _switch: false,
-      'debugger': false
+      'debugger': false,
+      agent: 'pc'
 		};
 		this.temp = {r: 255, g: 0, b: 0, brightness: 50};
 		this.fetchLighting = this.fetchLighting.bind(this);
@@ -37,7 +38,12 @@ export default class extends React.Component {
     const g = getUrlParam('g') || this.state.channel.g;
     const b = getUrlParam('b') || this.state.channel.b;
     const _debugger = Boolean(getUrlParam('debugger'));
-		this.setState({area, channel: {r, g, b}, 'debugger': _debugger});
+
+    let u = navigator.userAgent, agent = 'pc';
+    if (u.indexOf('Android') > -1 || u.indexOf('Adr') > -1 || !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) || !!u.match(/Mac OS X/)) {
+      agent = 'mobile';
+    }
+    this.setState({area, channel: {r, g, b}, 'debugger': _debugger, agent});
 	}
 
 	componentDidMount() {
@@ -52,9 +58,10 @@ export default class extends React.Component {
   }
 
 	render() {
-		const {color, btnBg, selected, area, _switch, brightness} = this.state;
+		const {color, btnBg, selected, area, _switch, brightness, agent} = this.state;
 		return (
-			<div className={'color-circle'}>
+			<div className={`color-circle ${agent === 'pc' ? 'color-circle-edit': ''}`}>
+        <div>
 				<div className={'color-circle-btn'}>
 					<div className={'btn-item'} onClick={() => this.setState({selected: 'colorBg'})}
 					     style={{background: `url(${btnBg[selected === 'colorBg' ? selected : 'normalBg']}) no-repeat 50%`}}>
@@ -96,6 +103,13 @@ export default class extends React.Component {
             <p>开关状态： {_switch ? '开' : '关'}</p>
           </div>
         }
+        </div>
+        {this.state.agent === 'pc' && <div className={'edit'}>
+          <div><label>区域:</label><input value={this.state.area} onChange={e => this.setState({area: e.target.value})}/></div>
+          <div><label>通道 - R:</label><input value={this.state.channel.r} onChange={e => this.setState({channel: {...this.state.channel, r: e.target.value}})}/></div>
+          <div><label>通道 - G:</label><input value={this.state.channel.g} onChange={e => this.setState({channel: {...this.state.channel, g: e.target.value}})}/></div>
+          <div><label>通道 - B:</label><input value={this.state.channel.b} onChange={e => this.setState({channel: {...this.state.channel, b: e.target.value}})}/></div>
+        </div>}
 			</div>
 		);
 	}
