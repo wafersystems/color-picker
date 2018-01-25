@@ -33,15 +33,38 @@
   * w: w is warn color channel of temperature, no required, default: 1
   * c: c is cool color channel of temperature, no required, default: 2
   
+  http://localhost:8000/brightness.html?area={area}?b={b}
+  
+  * area: lighting area id, required
+  * b: b is brightness channel, no required, default: 1
+
+  
 ## Debugger
   在query中添加debugger=true参数实现debugger，可以查看相应的值，以及转化后的值。
   eg: http://localhost:8000/color.html?debugger=true
   
 ## using on windows
 
-   http://localhost:8000/temperature.html
+   色温： 
+  
+     http://localhost:8000/temperature.html
+     or
+     http://localhost:8000/temperature
    
-   http://localhost:8000/color.html
+   颜色：
+   
+     http://localhost:8000/color.html
+     or
+     http://localhost:8000/color
+   
+   亮度：
+   
+    http://localhost:8000/brightness.html
+    or
+    http://localhost:8000/brightness
    
    if view the value, entry `?debugger=true` to url
      
+     
+ > Notes:
+ > All of the above URL can use `.html` or do not use `.html`

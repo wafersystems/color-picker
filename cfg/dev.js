@@ -24,6 +24,11 @@ let config = Object.assign({}, baseConfig, {
       'webpack-dev-server/client?http://' + defaultSettings.host + ':' + defaultSettings.port,
       'webpack/hot/only-dev-server',
       './src/temperature'
+    ],
+    brightness: [
+      'webpack-dev-server/client?http://' + defaultSettings.host + ':' + defaultSettings.port,
+      'webpack/hot/only-dev-server',
+      './src/brightness'
     ]
   },
   cache: true,

@@ -16,6 +16,9 @@ let config = Object.assign({}, baseConfig, {
     ],
     temperature: [
       './src/temperature'
+    ],
+    brightness: [
+      './src/brightness'
     ]
   },
   cache: false,
