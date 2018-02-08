@@ -3,6 +3,7 @@ import './color.css';
 import Brightness from './circle/BrightnessCircle';
 import {sceneChange, brightnessChange, getUrlParam, getSwitch} from './request';
 import {temperatureBrightness} from '../component/constant'
+import Scene from '../component/Scene';
 
 export default class extends React.Component {
   constructor() {
@@ -73,8 +74,10 @@ export default class extends React.Component {
         }
         </div>
         {agent === 'pc' && <div className={'edit'}>
+          <div><a href={'/temperature'}><button>色温</button></a>  <a href={'/color'}><button>颜色</button></a></div>
           <div><label>区域:</label><input value={this.state.area} onChange={e => this.setState({area: e.target.value})}/></div>
           <div><label>通道 - 亮度:</label><input value={this.state.channel} onChange={e => this.setState({channel: e.target.value})}/></div>
+          <Scene setScene={scene => sceneChange(area, scene)}/>
         </div>}
       </div>
     );

@@ -5,6 +5,7 @@ import SaturationCircle from './circle/SaturationCircle';
 import Brightness from './circle/BrightnessCircle';
 import {sceneChange, colorChange, getUrlParam, getSwitch} from './request';
 import {colorBrightness} from '../component/constant'
+import Scene from '../component/Scene';
 
 export default class extends React.Component {
 	constructor() {
@@ -105,10 +106,13 @@ export default class extends React.Component {
         }
         </div>
         {this.state.agent === 'pc' && <div className={'edit'}>
+          <div><a href={'/temperature'}><button>色温</button></a>  <a href={'/brightness'}><button>亮度</button></a></div>
+          <div />
           <div><label>区域:</label><input value={this.state.area} onChange={e => this.setState({area: e.target.value})}/></div>
           <div><label>通道 - R:</label><input value={this.state.channel.r} onChange={e => this.setState({channel: {...this.state.channel, r: e.target.value}})}/></div>
           <div><label>通道 - G:</label><input value={this.state.channel.g} onChange={e => this.setState({channel: {...this.state.channel, g: e.target.value}})}/></div>
           <div><label>通道 - B:</label><input value={this.state.channel.b} onChange={e => this.setState({channel: {...this.state.channel, b: e.target.value}})}/></div>
+          <Scene setScene={scene => sceneChange(area, scene)}/>
         </div>}
 			</div>
 		);

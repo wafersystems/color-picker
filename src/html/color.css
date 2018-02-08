@@ -52,6 +52,15 @@ circle {
   height: 26px;
 }
 
+.edit .scene {
+  margin-top: 10px;
+  border: 2px solid #dddddd;
+}
+
+.edit .scene > div {
+  width: 100%;
+  padding: 10px;
+}
 
 .color-circle-btn {
   margin: 2rem 0;
