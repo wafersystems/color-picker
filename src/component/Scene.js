@@ -9,14 +9,14 @@ const SCENES = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '
 export default class extends React.Component {
   constructor() {
     super(...arguments);
-    this.state = {scene: 0, values: {}};
+    this.state = {scene: 1, values: {}};
   }
 
   render() {
 
     return (
       <div className={'scene'}>
-        <button onClick={() => this.setState({scene: this.state.scene + 1})}>添加场景</button>
+        <button onClick={() => this.state.scene < 16 && this.setState({scene: this.state.scene + 1})}>添加场景</button>
         {
           Array.from({length: this.state.scene}, (v, k) => k).map(s => {
             return <div key={s}>
