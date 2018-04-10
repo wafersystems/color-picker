@@ -22,7 +22,7 @@ const app = <BrowserRouter>
 		<Route path="/temperature/" component={TemperatureIndex}/>
 		<Route path="/brightness/:area" component={Brightness}/>
 		<Route path="/brightness/" component={Brightness}/>
-		<Route path="/bar" component={BarIndex}/>
+		<Route path="/scene" component={BarIndex}/>
 	</div>
 </BrowserRouter>;
 
