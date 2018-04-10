@@ -31,15 +31,15 @@ export default class extends React.Component {
   componentWillMount() {
     document.title = 'Meeting Room';
     // console.log( this.props);
-    const c = getUrlParam('c') || this.state.channel.c;
-    const w = getUrlParam('w') || this.state.channel.w;
-    const _debugger = Boolean(getUrlParam('debugger'));
     let u = navigator.userAgent, agent = 'pc';
     if (u.indexOf('Android') > -1 || u.indexOf('Adr') > -1 || !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
       agent = 'mobile';
     }
     getAreaForBar().then(data => data.json()).then(s => {
       const area = this.props.match && this.props.match.params.area || getUrlParam('area') || s.area ||2;
+      const c = getUrlParam('c') || s.tChannel || this.state.channel.c;
+      const w = getUrlParam('w') || s.wChannel || this.state.channel.w;
+      const _debugger = Boolean(getUrlParam('debugger'));
       this.setState({area, channel: {c, w}, 'debugger': _debugger, agent});
     });
   }

@@ -87,7 +87,7 @@
   * tChannel: temperature cool channel id.
   * wChannel: temperature warn channel id.
   * scene: a array for all scene. every scene is a object, key is display name, value is scene value that is only.
+  * colorChannel: color channel
  
-     
  > Notes:
  > All of the above URL can use `.html` or do not use `.html`

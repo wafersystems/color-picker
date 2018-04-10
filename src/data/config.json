@@ -8,5 +8,6 @@
     {"label": "场景二", "value": 2},
     {"label": "场景三", "value": 3},
     {"label": "场景四", "value": 4}
-  ]
+  ],
+  "colorChannel": {"r": 1, "g": 2, "b": 3}
 }

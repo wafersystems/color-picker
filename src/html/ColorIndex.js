@@ -34,9 +34,6 @@ export default class extends React.Component {
 	componentWillMount() {
 		document.title = 'Meeting Room';
 		// console.log(this.props)
-    const r = getUrlParam('r') || this.state.channel.r;
-    const g = getUrlParam('g') || this.state.channel.g;
-    const b = getUrlParam('b') || this.state.channel.b;
     const _debugger = Boolean(getUrlParam('debugger'));
 
     let u = navigator.userAgent, agent = 'pc';
@@ -45,6 +42,9 @@ export default class extends React.Component {
     }
     getAreaForBar().then(data => data.json()).then(s => {
       const area = this.props.match && this.props.match.params.area || getUrlParam('area') || s.area ||2;
+      const r = getUrlParam('r') || s.colorChannel && s.colorChannel.r || this.state.channel.r;
+      const g = getUrlParam('g') || s.colorChannel && s.colorChannel.g || this.state.channel.g;
+      const b = getUrlParam('b') || s.colorChannel && s.colorChannel.b || this.state.channel.b;
       this.setState({area, channel: {r, g, b}, 'debugger': _debugger, agent});
     });
 	}
