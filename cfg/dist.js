@@ -19,10 +19,12 @@ let config = Object.assign({}, baseConfig, {
     ],
     brightness: [
       './src/brightness'
+    ],
+    scene: [
+      './src/scene'
     ]
   },
   cache: false,
-  devtool: 'sourcemap',
   plugins: [
     new webpack.optimize.DedupePlugin(),
     new webpack.DefinePlugin({

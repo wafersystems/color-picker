@@ -3,7 +3,7 @@ import './color.css';
 import ColorCircle from './circle/ColorCircle';
 import SaturationCircle from './circle/SaturationCircle';
 import Brightness from './circle/BrightnessCircle';
-import {sceneChange, colorChange, getUrlParam, getSwitch} from './request';
+import {sceneChange, colorChange, getUrlParam, getSwitch, getAreaForBar} from './request';
 import {colorBrightness} from '../component/constant'
 import Scene from '../component/Scene';
 
@@ -34,7 +34,6 @@ export default class extends React.Component {
 	componentWillMount() {
 		document.title = 'Meeting Room';
 		// console.log(this.props)
-    const area = this.props.match && this.props.match.params.area || getUrlParam('area') || 2;
     const r = getUrlParam('r') || this.state.channel.r;
     const g = getUrlParam('g') || this.state.channel.g;
     const b = getUrlParam('b') || this.state.channel.b;
@@ -44,7 +43,10 @@ export default class extends React.Component {
     if (u.indexOf('Android') > -1 || u.indexOf('Adr') > -1 || !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
       agent = 'mobile';
     }
-    this.setState({area, channel: {r, g, b}, 'debugger': _debugger, agent});
+    getAreaForBar().then(data => data.json()).then(s => {
+      const area = this.props.match && this.props.match.params.area || getUrlParam('area') || s.area ||2;
+      this.setState({area, channel: {r, g, b}, 'debugger': _debugger, agent});
+    });
 	}
 
 	componentDidMount() {

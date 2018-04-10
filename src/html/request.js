@@ -28,3 +28,7 @@ export const getUrlParam = (name) => {
 export const getSwitch = (area) => {
   return fetch(`${location.protocol}//${location.host}/GetDyNet.cgi?a=${area}`);
 };
+
+export const getAreaForBar = () => {
+  return fetch('/data/config.json');
+};

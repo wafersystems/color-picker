@@ -5,9 +5,10 @@
   "main": "",
   "scripts": {
     "clean": "rimraf dist/*",
-    "copy": "copyfiles -f ./src/color.html ./src/temperature.html ./src/brightness.html ./src/favicon.ico ./dist",
+    "copy": "copyfiles -f ./src/color.html ./src/temperature.html ./src/brightness.html ./src/scene.html ./src/favicon.ico ./dist",
+    "copyJson": "copyfiles -f ./src/data/config.json ./dist/data",
     "copyjs": "copyfiles -f ./node_modules/es5-shim/es5-shim.min.js ./node_modules/es5-shim/es5-sham.min.js ./node_modules/html5shiv/dist/html5shiv.min.js ./node_modules/matchmedia-polyfill/matchMedia.js ./dist/js",
-    "dist": "npm run copy & npm run copyjs & webpack --env=dist",
+    "dist": "npm run clean & npm run copy & npm run copyjs & npm run copyJson & webpack --env=dist -p",
     "lint": "eslint ./src",
     "posttest": "npm run lint",
     "release:major": "npm version major && npm publish && git push --follow-tags",
@@ -21,7 +22,7 @@
   },
   "repository": "",
   "keywords": [],
-  "author": "Your name here",
+  "author": "wafersystems",
   "devDependencies": {
     "babel-core": "^6.0.0",
     "babel-eslint": "^6.0.0",
@@ -59,15 +60,16 @@
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.6",
     "webpack": "^1.12.0",
-    "webpack-dev-server": "^1.12.0"
-  },
-  "dependencies": {
-    "core-js": "^2.0.0",
+    "webpack-dev-server": "^1.12.0",
     "es5-shim": "^4.5.9",
     "es6-promise": "^4.1.1",
     "es6-shim": "^0.35.3",
     "html5shiv": "^3.7.3",
-    "normalize.css": "^4.0.0",
+    "normalize.css": "^4.0.0"
+  },
+  "dependencies": {
+    "core-js": "^2.0.0",
+    "antd": "^3.4.1",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
     "react-router": "^4.2.0",

@@ -8,6 +8,7 @@ import {
 import ColorIndex from './html/ColorIndex';
 import TemperatureIndex from './html/TemperatureIndex';
 import Brightness from './html/BrightnessIndex';
+import BarIndex from './html/BarIndex';
 import 'es6-shim';
 
 require('es6-promise').polyfill();
@@ -21,6 +22,7 @@ const app = <BrowserRouter>
 		<Route path="/temperature/" component={TemperatureIndex}/>
 		<Route path="/brightness/:area" component={Brightness}/>
 		<Route path="/brightness/" component={Brightness}/>
+		<Route path="/bar" component={BarIndex}/>
 	</div>
 </BrowserRouter>;
 

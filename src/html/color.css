@@ -124,3 +124,37 @@ circle {
 p {
   line-height: 0.5;
 }
+
+
+.bar-slider {
+  margin: 20px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+}
+
+.bar-slider .slider-title {
+  padding: 10px 10px;
+  background: #dddddd;
+}
+
+.bar-slider .slider-ctrl {
+  display: flex;
+  width: 100%;
+  padding: 10px 10px;
+  align-items: center;
+}
+
+.bar-slider .slider-ctrl .ant-slider {
+  width: 80%;
+}
+
+.bar-scene {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.bar-scene > div {
+  flex-grow: 1;
+  margin: 10px;
+}

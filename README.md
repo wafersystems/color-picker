@@ -50,19 +50,19 @@
   
 ## using on windows
 
-   色温： 
+   Temperature： 
   
      http://localhost:8000/temperature.html
      or
      http://localhost:8000/temperature
    
-   颜色：
+   Color：
    
      http://localhost:8000/color.html
      or
      http://localhost:8000/color
    
-   亮度：
+   Brightness：
    
     http://localhost:8000/brightness.html
     or
@@ -70,6 +70,24 @@
    
    if view the value, entry `?debugger=true` to url
      
+## Scene control for config
+
+    http://localhost:8000/scene.html
+    or
+    http://localhost:8000/scene 
+    
+  #### config.json
+    
+   Direction: /data/config.json
+   
+   All data of this json are required.
+  
+  * area: lighting area id.
+  * bChannel: brightness channel id.
+  * tChannel: temperature cool channel id.
+  * wChannel: temperature warn channel id.
+  * scene: a array for all scene. every scene is a object, key is display name, value is scene value that is only.
+ 
      
  > Notes:
  > All of the above URL can use `.html` or do not use `.html`

@@ -1,0 +1,12 @@
+{
+  "area": 2,
+  "bChannel": 1,
+  "tChannel": 2,
+  "wChannel": 3,
+  "scene": [
+    {"label": "场景一", "value": 1},
+    {"label": "场景二", "value": 2},
+    {"label": "场景三", "value": 3},
+    {"label": "场景四", "value": 4}
+  ]
+}
